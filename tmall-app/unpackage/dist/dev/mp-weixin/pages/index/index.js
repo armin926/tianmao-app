@@ -133,18 +133,38 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Search = function Search() {__webpack_require__.e(/*! require.ensure | pages/index/components/search */ "pages/index/components/search").then((function () {return resolve(__webpack_require__(/*! ./components/search.vue */ 35));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Swipers = function Swipers() {__webpack_require__.e(/*! require.ensure | pages/index/components/swiper */ "pages/index/components/swiper").then((function () {return resolve(__webpack_require__(/*! ./components/swiper.vue */ 40));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Purchase = function Purchase() {__webpack_require__.e(/*! require.ensure | pages/index/components/purchase */ "pages/index/components/purchase").then((function () {return resolve(__webpack_require__(/*! ./components/purchase.vue */ 45));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var List = function List() {__webpack_require__.e(/*! require.ensure | pages/index/components/list */ "pages/index/components/list").then((function () {return resolve(__webpack_require__(/*! ./components/list.vue */ 50));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Commodity = function Commodity() {__webpack_require__.e(/*! require.ensure | pages/index/components/commodity */ "pages/index/components/commodity").then((function () {return resolve(__webpack_require__(/*! ./components/commodity.vue */ 55));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {};
-
   },
+  components: {
+    Search: Search,
+    Swipers: Swipers,
+    Purchase: Purchase,
+    List: List,
+    Commodity: Commodity },
+
   onLoad: function onLoad() {
 
   },

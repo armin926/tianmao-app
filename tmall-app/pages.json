@@ -3,14 +3,16 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "首页",
+				"navigationBarBackgroundColor":"#fe0024",
+				"navigationBarTextStyle":"white"
 			}
 		}
 	    ,{
             "path" : "pages/sort/sort",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "分类",
                 "enablePullDownRefresh": false
             }
             
@@ -19,7 +21,7 @@
             "path" : "pages/shopping/shopping",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "购物车",
                 "enablePullDownRefresh": false
             }
             
@@ -28,7 +30,7 @@
             "path" : "pages/my/my",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "个人中心",
                 "enablePullDownRefresh": false
             }
             
@@ -68,7 +70,7 @@
 		]
 	},
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "red",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"

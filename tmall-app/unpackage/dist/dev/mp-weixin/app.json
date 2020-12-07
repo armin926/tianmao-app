@@ -7,7 +7,7 @@
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
@@ -45,5 +45,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap59.json"
+  "sitemapLocation": "sitemap60.json"
 }
