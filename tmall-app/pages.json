@@ -3,14 +3,16 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "首页",
+				"navigationBarBackgroundColor":"#fe0024",
+				"navigationBarTextStyle":"white"
 			}
 		}
 	    ,{
             "path" : "pages/sort/sort",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "分类",
                 "enablePullDownRefresh": false
             }
             
@@ -19,7 +21,7 @@
             "path" : "pages/shopping/shopping",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "购物车",
                 "enablePullDownRefresh": false
             }
             
@@ -28,7 +30,7 @@
             "path" : "pages/my/my",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "个人中心",
                 "enablePullDownRefresh": false
             }
             
@@ -43,25 +45,33 @@
 		"list": [
 			{
 				"text":"首页",
+				"iconPath":"static/tab/tab-a.png",
+				"selectedIconPath":"static/tab/tab-b.png",
 				"pagePath":"pages/index/index"
 			},
 			{
 				"text":"分类",
+				"iconPath":"static/tab/tab-c.png",
+				"selectedIconPath":"static/tab/tab-d.png",
 				"pagePath":"pages/sort/sort"
 			},
 			{
 				"text":"购物车",
+				"iconPath":"static/tab/tab-e.png",
+				"selectedIconPath":"static/tab/tab-f.png",
 				"pagePath":"pages/shopping/shopping"
 			},
 			{
 				"text":"我的",
+				"iconPath":"static/tab/tab-g.png",
+				"selectedIconPath":"static/tab/tab-h.png",
 				"pagePath":"pages/my/my"
 			}
 		]
 	},
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "天猫APP",
+		"navigationBarTextStyle": "red",
+		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	}
