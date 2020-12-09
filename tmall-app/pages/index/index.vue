@@ -5,9 +5,9 @@
 		<!-- 轮播 -->
 		<Swipers :bannerData="bannerData"></Swipers>
 		<!-- 抢购 -->
-		<Purchase></Purchase>
+		<Purchase :recomData="recomData"></Purchase>
 		<!-- 榜单 -->
-		<List></List>
+		<List :billData="billData"></List>
 		<!-- 卡片流 -->
 		<Commodity></Commodity>
 	</view>
@@ -22,7 +22,9 @@
 	export default {
 		data() {
 			return {
-				bannerData: []
+				bannerData: [], // 轮播数据
+				recomData: [], // 推荐抢购商品
+				billData: []
 			}
 		},
 		components: {
@@ -39,11 +41,16 @@
 			async indexRequest(){
 				// 轮播
 				let banner = new this.Request(this.Urls.m().getBanner).modeget()
+				// 推荐抢购商品
+				let recom = new this.Request(this.Urls.m().getRecommurl).modeget()
+				// 天猫榜单
+				let billboard = new this.Request(this.Urls.m().getBillboardurl).modeget()
 				try{
 					// 同时并发请求: Promise.all([])
-					let res = await Promise.all([banner])
-					// console.log(res)
+					let res = await Promise.all([banner,recom,billboard])
 					this.bannerData = res[0].data
+					this.recomData = res[1].data
+					this.billData = res[2].data
 				}catch(e){
 					
 				}
@@ -53,4 +60,7 @@
 </script>
 
 <style>
+	page{
+		background-color: #f4f4f4;
+	}
 </style>

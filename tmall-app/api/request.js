@@ -10,9 +10,14 @@ const urls = class {
 	static m() {
 		// 首页轮播图
 		let getBanner = `${url}/getbanner`
-
+		// 推荐抢购商品
+		let getRecommurl = `${url}/recom`
+		// 天猫榜单
+		let getBillboardurl = `${url}/billboard`
 		return {
-			getBanner
+			getBanner,
+			getRecommurl,
+			getBillboardurl
 		}
 	}
 }
