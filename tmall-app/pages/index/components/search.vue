@@ -22,7 +22,9 @@
 		},
 		methods: {
 			searCh() {
-				console.log('跳转页面搜索商品')
+				uni.navigateTo({
+					url:'../search/search'
+				})
 			}
 		}
 	}

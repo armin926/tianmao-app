@@ -14,10 +14,13 @@ const urls = class {
 		let getRecommurl = `${url}/recom`
 		// 天猫榜单
 		let getBillboardurl = `${url}/billboard`
+		// 卡片流
+		let getCommodcradurl = `${url}/commodcrad`
 		return {
 			getBanner,
 			getRecommurl,
-			getBillboardurl
+			getBillboardurl,
+			getCommodcradurl
 		}
 	}
 }

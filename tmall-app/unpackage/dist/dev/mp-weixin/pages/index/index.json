@@ -6,7 +6,6 @@
     "search": "/pages/index/components/search",
     "swipers": "/pages/index/components/swiper",
     "purchase": "/pages/index/components/purchase",
-    "list": "/pages/index/components/list",
-    "commodity": "/pages/index/components/commodity"
+    "list": "/pages/index/components/list"
   }
 }

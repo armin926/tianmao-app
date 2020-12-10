@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/search/search",
     "pages/index/index",
     "pages/sort/sort",
     "pages/shopping/shopping",
@@ -44,6 +45,8 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap95.json"
+  "usingComponents": {
+    "commodity": "/pages/components/commodity",
+    "loader-on": "/pages/components/loading-men"
+  }
 }

@@ -8048,10 +8048,13 @@ var urls = /*#__PURE__*/function () {
       var getRecommurl = "".concat(url, "/recom");
       // 天猫榜单
       var getBillboardurl = "".concat(url, "/billboard");
+      // 卡片流
+      var getCommodcradurl = "".concat(url, "/commodcrad");
       return {
         getBanner: getBanner,
         getRecommurl: getRecommurl,
-        getBillboardurl: getBillboardurl };
+        getBillboardurl: getBillboardurl,
+        getCommodcradurl: getCommodcradurl };
 
     } }]);return urls;}();var _default =
 
@@ -8112,17 +8115,25 @@ request;exports.default = _default;
 /* 16 */,
 /* 17 */,
 /* 18 */,
-/* 19 */
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 20);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 28);
 
 /***/ }),
-/* 20 */
+/* 28 */
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8153,7 +8164,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 21);
+module.exports = __webpack_require__(/*! ./runtime */ 29);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8169,7 +8180,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 21 */
+/* 29 */
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
