@@ -8,6 +8,9 @@ import request from './api/api.js'
 import Commodity from './pages/components/commodity.vue'
 import loadingMen from './pages/components/loading-men.vue'
 
+// 提示框样式
+import './style/style.css'
+
 Vue.prototype.Request = request
 Vue.prototype.Urls = urls
 Vue.config.productionTip = false

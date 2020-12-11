@@ -16,11 +16,14 @@ const urls = class {
 		let getBillboardurl = `${url}/billboard`
 		// 卡片流
 		let getCommodcradurl = `${url}/commodcrad`
+		// 商品搜索
+		let getSearchurl = `${url}/search`
 		return {
 			getBanner,
 			getRecommurl,
 			getBillboardurl,
-			getCommodcradurl
+			getCommodcradurl,
+			getSearchurl
 		}
 	}
 }

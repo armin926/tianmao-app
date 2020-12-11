@@ -137,7 +137,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 27));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+//
 //
 //
 //
@@ -180,19 +181,109 @@ console,log = _console.log;var _default =
 {
   data: function data() {
     return {
-      searchData: '' };
+      searchdata: '',
+      ifhistory: false, //是否有搜索历史
+      setdata: [], // 搜索历史数据
+      pageid: 0, // 初始页数
+      commodcradData: [], //请求获得数据结果
+      searchno: false, //没有搜索结果
+      searchkey: '' // 最后一次搜索结果
+    };
+  },
+  mounted: function mounted() {
+    this.setStorage();
+  },
+  //上拉加载事件
+  onReachBottom: function onReachBottom() {
+    this.$refs.loadon.loAd({
+      whether: true });
 
+    this.pageid++;
+    this.searchData(this.searchkey, '002');
   },
   methods: {
     // 点击按钮触发搜索
     seArch: function seArch() {
-      log(this.searchData);
+      if (this.searchdata !== '') {
+        this.ifhistory = false;
+        this.pageid = 0;
+        this.getStorage(this.searchdata);
+        this.searchData(this.searchdata);
+      }
     },
     // 键盘上搜索或回车键触发
     onKeyInput: function onKeyInput(e) {
-      log(e);
       var searchKey = e.detail.value;
+      if (searchKey !== '') {
+        this.ifhistory = false;
+        this.pageid = 0;
+        this.getStorage(searchKey);
+        this.searchData(searchKey);
+      }
+    },
+    // 存储搜索历史到本地缓存
+    getStorage: function getStorage(searchkey) {
+      // 存之前先取出之前的搜索历史
+      var seararray = uni.getStorageSync('srarch_key') || [];
+      seararray.unshift(searchkey);
+      uni.setStorageSync('srarch_key', seararray);
+      // 存数据
+      uni.setStorageSync();
+    },
+    // 取出本地缓存的搜索历史
+    setStorage: function setStorage() {
+      var setdata = uni.getStorageSync('srarch_key');
+      // 数组去重
+      var setdataarr = Array.from(new Set(setdata));
+      if (setdataarr.length) {
+        this.setdata = setdataarr;
+        this.ifhistory = true;
+      } else {
+        this.ifhistory = false;
+      }
+    },
+    // 清除搜索历史
+    removeStorage: function removeStorage() {
+      uni.removeStorageSync('srarch_key');
+      this.setStorage();
+    },
+    // 搜索历史的搜索
+    menubtn: function menubtn(item) {
+      this.ifhistory = false;
+      this.pageid = 0;
+      this.searchData(item);
+    },
+    // 请求接口搜索商品
+    searchData: function searchData(searchkey) {var _arguments = arguments,_this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var idn, keys, searchdata;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:idn = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : '001';
+                _this.searchkey = searchkey;
+                keys = "?keyword=".concat(searchkey, "&page=").concat(_this.pageid);_context.prev = 3;_context.next = 6;return (
+
+                  new _this.Request(_this.Urls.m().getSearchurl + keys).modeget());case 6:searchdata = _context.sent;
+                if (idn === '002') {
+                  // 上拉加载
+                  if (searchdata.data.length) {
+                    _this.commodcradData = [].concat(_toConsumableArray(_this.commodcradData), _toConsumableArray(searchdata.data));
+                  } else {
+                    _this.$refs.loadon.loAd({
+                      whether: true,
+                      tips: '没有更多了',
+                      picture: false });
+
+                  }
+                } else {
+                  _this.$refs.loadon.loAd({ whether: false });
+                  if (searchdata.data.length) {
+                    _this.commodcradData = searchdata.data;
+                    _this.searchno = false;
+                  } else {
+                    _this.searchno = true;
+                  }
+                }_context.next = 12;break;case 10:_context.prev = 10;_context.t0 = _context["catch"](3);case 12:case "end":return _context.stop();}}}, _callee, null, [[3, 10]]);}))();
+
+
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 19 */
