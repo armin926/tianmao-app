@@ -49,5 +49,6 @@
   "usingComponents": {
     "commodity": "/pages/components/commodity",
     "loader-on": "/pages/components/loading-men"
-  }
+  },
+  "sitemapLocation": "sitemap36.json"
 }

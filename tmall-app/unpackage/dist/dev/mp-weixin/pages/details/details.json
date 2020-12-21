@@ -2,5 +2,7 @@
   "navigationBarTitleText": "详情页",
   "enablePullDownRefresh": false,
   "navigationStyle": "custom",
-  "usingComponents": {}
+  "usingComponents": {
+    "top": "/pages/details/components/top"
+  }
 }
