@@ -17,29 +17,41 @@
 		<view>
 			<swiper :indicator-dots="dots" :interval="3000" :duration="1000" :circular="true" indicator-color="rgba(216, 216, 216)"
 			 indicator-active-color="#7a7a7a" @change="bannerfun">
-				<swiper-item class="swiper-video">
-					<view class="video-btn">
-						<view>
-							<video id="myVideo" ref="myVideo" object-fit="cover" :show-center-play-btn="false" :enable-progress-gesture="false" 
-							 :controls="contimg" @play="playFun" @pause="pauseFun" @ended="endedFun"></video>
+				<block v-for="(iteming,index) in imagetext[0].media" :key="index">
+					<swiper-item class="swiper-video" v-if="iteming.video != ''">
+						<view class="video-btn">
+							<view>
+								<video id="myVideo" :src="iteming.video" ref="myVideo" object-fit="cover" :show-center-play-btn="false"
+								 :enable-progress-gesture="false" :controls="contimg" @play="playFun" @pause="pauseFun" @ended="endedFun"></video>
+							</view>
+							<view class="video-img" @click="videoPlay()" v-show="startVideo">
+								<image src="/static/details/bofang.svg" mode="widthFix"></image>
+							</view>
 						</view>
-						<view class="video-img" @click="videoPlay()" v-show="startVideo">
-							<image src="/static/details/bofang.svg" mode="widthFix"></image>
-						</view>
-					</view>
-				</swiper-item>
-				<swiper-item>
-					<view>
-						<image mode="aspectFill" class="imageurl"></image>
-					</view>
-				</swiper-item>
+					</swiper-item>
+					<block v-for="(item,indexing) in iteming.imgArray" :key="indexing">
+						<swiper-item>
+							<view>
+								<image :src="item" mode="aspectFill" class="imageurl" @click="previmg(indexing,iteming.imgArray)"></image>
+							</view>
+						</swiper-item>
+					</block>
+				</block>
 			</swiper>
 		</view>
+		<!-- 价格，标题等等 -->
+		<Price :priceetc="priceetc"></Price>
+		<!-- 产品参数 -->
+		<Parame></Parame>
 	</view>
 </template>
 
 <script>
+	// 预览图片
+	const {Login} = require('../../public/logic.js')
 	import Top from './components/top.vue'
+	import Price from './components/price.vue'
+	import Parame from './components/parame.vue'
 	export default {
 		data() {
 			return {
@@ -50,28 +62,58 @@
 				// 透明度
 				styleObject: 0,
 				// 找到视频上下文
-				videoPlay: {},
+				videoPlaydata: {},
 				// 中间播放按钮
 				startVideo: true,
 				// 是否显示默认播放控件
-				contimg: false
+				contimg: false,
+				// 视频数组对象(视频，图片)
+				imagetext: [],
+				// 面板指示点
+				dots: false,
+				// 是否存在视频
+				truevideo: '',
+				// 商品标题，价格等
+				priceetc:{}
 			}
 		},
 		components: {
-			Top
+			Top,Price,Parame
 		},
 		created() {
 			// 获取胶囊按钮的数据
 			this.topheight = uni.getMenuButtonBoundingClientRect()
 		},
 		mounted() {
-			this.videoPlay = uni.createVideoContext('myVideo')
+			this.videoPlaydata = uni.createVideoContext('myVideo')
 		},
 		// 滚动监听
 		onPageScroll(e) {
 			this.handleScroll(e.scrollTop)
 		},
+		onLoad() {
+			this.detRequest('5f8bbf2823954733542169a1')
+		},
 		methods: {
+			// 请求数据
+			async detRequest(id) {
+				let introduce = new this.Request(this.Urls.m().getIntroduceurl + '?id=' + id).modeget()
+				try {
+					let res = await Promise.all([introduce])
+					// 图片视频的数据
+					this.imagetext = res[0].data
+					let mendata = res[0].data[0]
+					// 商品标题，价格
+					let describe = mendata.describe
+					describe['id'] = mendata.id
+					this.priceetc = describe
+					// 如果有视频不显示面板指示点
+					this.truevideo = mendata.media[0].video
+					this.dots = this.truevideo === '' ? true : false
+				} catch (e) {
+					//TODO handle the exception
+				}
+			},
 			// 导航栏滚动显示/隐藏
 			handleScroll(top) {
 				if (top > 90) {
@@ -84,29 +126,40 @@
 				}
 			},
 			// 滑块滑动时触发
-			bannerfun(){
-				this.videoPlay.pause()
+			bannerfun(e) {
+				let inx = e.detail.current
+				// 滑动到图片的时候要显示面板指示点
+				if (this.truevideo != '') {
+					this.videoPlaydata.pause()
+					this.dots = inx == 0 ? false : true
+				} else {
+					this.dots = true
+				}
 			},
 			// 手动触发视频播放
 			videoPlay() {
 				setTimeout(() => {
-					this.videoPlay.play()
+					this.videoPlaydata.play()
 				}, 200)
 			},
 			// 视频播放时触发
-			playFun(){
+			playFun() {
 				this.startVideo = false
 				this.contimg = true
 			},
 			// 视频暂停时触发
-			pauseFun(){
+			pauseFun() {
 				this.startVideo = true
 				this.contimg = false
 			},
 			// 视频播放到结尾时触发
-			endedFun(){
+			endedFun() {
 				this.startVideo = true
 				this.contimg = false
+			},
+			// 预览图片
+			previmg(index,imgArray){
+				new Login(index,imgArray).previewImg()
 			}
 		}
 	}

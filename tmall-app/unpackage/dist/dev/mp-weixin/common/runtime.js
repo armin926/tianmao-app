@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"pages/components/commodity":1,"pages/components/loading-men":1,"pages/details/components/top":1,"pages/index/components/list":1,"pages/index/components/purchase":1,"pages/index/components/search":1,"pages/index/components/swiper":1};
+/******/ 		var cssChunks = {"pages/components/commodity":1,"pages/components/loading-men":1,"pages/details/components/parame":1,"pages/details/components/price":1,"pages/details/components/top":1,"pages/index/components/list":1,"pages/index/components/purchase":1,"pages/index/components/search":1,"pages/index/components/swiper":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"pages/components/commodity":"pages/components/commodity","pages/components/loading-men":"pages/components/loading-men","pages/details/components/top":"pages/details/components/top","pages/index/components/list":"pages/index/components/list","pages/index/components/purchase":"pages/index/components/purchase","pages/index/components/search":"pages/index/components/search","pages/index/components/swiper":"pages/index/components/swiper"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"pages/components/commodity":"pages/components/commodity","pages/components/loading-men":"pages/components/loading-men","pages/details/components/parame":"pages/details/components/parame","pages/details/components/price":"pages/details/components/price","pages/details/components/top":"pages/details/components/top","pages/index/components/list":"pages/index/components/list","pages/index/components/purchase":"pages/index/components/purchase","pages/index/components/search":"pages/index/components/search","pages/index/components/swiper":"pages/index/components/swiper"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

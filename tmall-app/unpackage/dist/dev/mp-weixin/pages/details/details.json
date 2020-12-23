@@ -3,6 +3,8 @@
   "enablePullDownRefresh": false,
   "navigationStyle": "custom",
   "usingComponents": {
-    "top": "/pages/details/components/top"
+    "top": "/pages/details/components/top",
+    "price": "/pages/details/components/price",
+    "parame": "/pages/details/components/parame"
   }
 }

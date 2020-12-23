@@ -18,12 +18,18 @@ const urls = class {
 		let getCommodcradurl = `${url}/commodcrad`
 		// 商品搜索
 		let getSearchurl = `${url}/search`
+		// 商品详情页{商品介绍
+		let getIntroduceurl = `${url}/introduce`
+		// 产品参数
+		let parameterurl = `${url}/parameter`
 		return {
 			getBanner,
 			getRecommurl,
 			getBillboardurl,
 			getCommodcradurl,
-			getSearchurl
+			getSearchurl,
+			getIntroduceurl,
+			parameterurl
 		}
 	}
 }

@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import App from './App'
 
+// bus 传值
+import bus from './public/bus.js'
+Vue.prototype.$bus = bus
+
 // 请求方法
 import urls from './api/request.js'
 import request from './api/api.js'
@@ -10,6 +14,10 @@ import loadingMen from './pages/components/loading-men.vue'
 
 // 提示框样式
 import './style/style.css'
+// 动画样式
+import './pattern/animat.css'
+// 产品参数
+import './pattern/styles.css'
 
 Vue.prototype.Request = request
 Vue.prototype.Urls = urls
