@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/details/details",
+    "pages/comments/comments",
     "pages/search/search",
     "pages/index/index",
     "pages/sort/sort",
@@ -48,7 +49,7 @@
   },
   "usingComponents": {
     "commodity": "/pages/components/commodity",
-    "loader-on": "/pages/components/loading-men"
-  },
-  "sitemapLocation": "sitemap90.json"
+    "loader-on": "/pages/components/loading-men",
+    "showmodal": "/pages/components/showmodal"
+  }
 }

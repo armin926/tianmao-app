@@ -43,15 +43,26 @@
 		<Price :priceetc="priceetc"></Price>
 		<!-- 产品参数 -->
 		<Parame></Parame>
+		<!-- 评价 -->
+		<Evaluate :comment="comment" class="evaluate"></Evaluate>
+		<!-- 商品详情图 -->
+		<Produce :priceetc="priceetc" class="produce"></Produce>
+		<!-- 底部操作栏 -->
+		<Shopping :goodid="goodid"></Shopping>
 	</view>
 </template>
 
 <script>
 	// 预览图片
-	const {Login} = require('../../public/logic.js')
+	const {
+		Login
+	} = require('../../public/logic.js')
 	import Top from './components/top.vue'
 	import Price from './components/price.vue'
 	import Parame from './components/parame.vue'
+	import Evaluate from './components/evaluate.vue'
+	import Produce from './components/product.vue'
+	import Shopping from './components/shopping.vue'
 	export default {
 		data() {
 			return {
@@ -74,11 +85,21 @@
 				// 是否存在视频
 				truevideo: '',
 				// 商品标题，价格等
-				priceetc:{}
+				priceetc: {},
+				// 评价
+				comment: [],
+				// 备用商品id
+				goodid: '',
+				targetTop: 0
 			}
 		},
 		components: {
-			Top,Price,Parame
+			Top,
+			Price,
+			Parame,
+			Evaluate,
+			Produce,
+			Shopping
 		},
 		created() {
 			// 获取胶囊按钮的数据
@@ -86,9 +107,16 @@
 		},
 		mounted() {
 			this.videoPlaydata = uni.createVideoContext('myVideo')
+			const query = uni.createSelectorQuery().in(this);
+			query.select('.evaluate').boundingClientRect(data => {
+				this.targetTop = data.top - (this.topheight.top + this.topheight.height)
+			}).exec();
 		},
 		// 滚动监听
 		onPageScroll(e) {
+			if (e.scrollTop > this.targetTop) {
+				console.log('111')
+			}
 			this.handleScroll(e.scrollTop)
 		},
 		onLoad() {
@@ -98,15 +126,21 @@
 			// 请求数据
 			async detRequest(id) {
 				let introduce = new this.Request(this.Urls.m().getIntroduceurl + '?id=' + id).modeget()
+				// 评价
+				let wxcommnt = new this.Request(this.Urls.m().wxcommnt + '?id=' + id).modeget()
 				try {
-					let res = await Promise.all([introduce])
+					let res = await Promise.all([introduce, wxcommnt])
 					// 图片视频的数据
 					this.imagetext = res[0].data
 					let mendata = res[0].data[0]
+					// 商品ID
+					this.goodid = mendata.id
 					// 商品标题，价格
 					let describe = mendata.describe
 					describe['id'] = mendata.id
 					this.priceetc = describe
+					// 评价
+					this.comment = res[1].data
 					// 如果有视频不显示面板指示点
 					this.truevideo = mendata.media[0].video
 					this.dots = this.truevideo === '' ? true : false
@@ -158,8 +192,26 @@
 				this.contimg = false
 			},
 			// 预览图片
-			previmg(index,imgArray){
-				new Login(index,imgArray).previewImg()
+			previmg(index, imgArray) {
+				new Login(index, imgArray).previewImg()
+			},
+			// 被子组件Top调用来锚点链接
+			fathEr(index) {
+				//evaluate:评价 produce:详情图
+				let clsdata = index === 1 ? '.evaluate' : '.produce'
+				let height = this.topheight.top + this.topheight.height
+				const query = this.createSelectorQuery()
+				query.select(clsdata).boundingClientRect()
+				query.selectViewport().scrollOffset()
+				query.exec(res => {
+					let top = res[0].top + res[1].scrollTop - height
+					uni.pageScrollTo({
+						scrollTop: top,
+						duration: 300
+					})
+					// res[0].top       // #the-id节点的上边界坐标
+					// res[1].scrollTop // 显示区域的竖直滚动位置
+				})
 			}
 		}
 	}
@@ -188,7 +240,6 @@
 
 	.status_bar {
 		width: 100%;
-		/* background: #007AFF; */
 	}
 
 	.navs-image image {

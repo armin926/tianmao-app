@@ -13,7 +13,7 @@ const request = class {
 				method: 'POST',
 				data: this.arg
 			}).then(res => {
-				resolve(res)
+				resolve(res[1].data)
 			}).catch(err => {
 				reject(err)
 			})

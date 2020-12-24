@@ -22,6 +22,17 @@ const urls = class {
 		let getIntroduceurl = `${url}/introduce`
 		// 产品参数
 		let parameterurl = `${url}/parameter`
+		// 商品评价
+		let wxcommnt = `${url}/wxcommnt`
+		// 评论分类标签
+		let comtag = `${url}/comtag`
+		// 用户评论内容
+		let comtconent = `${url}/comtconent`
+		// 收藏和取消收藏
+		let enshrine = `${url}/enshrine`
+		// 登录
+		let wxlogin = `${url}/wxlogin`
+		
 		return {
 			getBanner,
 			getRecommurl,
@@ -29,7 +40,12 @@ const urls = class {
 			getCommodcradurl,
 			getSearchurl,
 			getIntroduceurl,
-			parameterurl
+			parameterurl,
+			wxcommnt,
+			comtag,
+			comtconent,
+			enshrine,
+			wxlogin
 		}
 	}
 }

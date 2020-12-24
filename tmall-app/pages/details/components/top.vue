@@ -43,6 +43,18 @@
 		methods:{
 			navbtn(index){
 				this.num = index
+				if(index === 0){
+					this.backTop()
+				}else {
+					this.$parent.fathEr(index)
+				}
+			},
+			// 回到顶部
+			backTop(){
+				uni.pageScrollTo({
+					scrollTop:0,
+					duration:300
+				})
 			}
 		}
 	}

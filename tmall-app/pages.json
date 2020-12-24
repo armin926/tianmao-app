@@ -11,6 +11,15 @@
 		    
 		},
 		{
+		    "path" : "pages/comments/comments",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "商品评价",
+		        "enablePullDownRefresh": false
+		    }
+		}
+		,
+		{
 		    "path" : "pages/search/search",
 		    "style" :                                                                                    
 		    {
@@ -55,7 +64,6 @@
             }
             
         }
-        
     ],
 	// 配置底部导航栏
 	"tabBar": {

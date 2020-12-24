@@ -5,6 +5,9 @@
   "usingComponents": {
     "top": "/pages/details/components/top",
     "price": "/pages/details/components/price",
-    "parame": "/pages/details/components/parame"
+    "parame": "/pages/details/components/parame",
+    "evaluate": "/pages/details/components/evaluate",
+    "produce": "/pages/details/components/product",
+    "shopping": "/pages/details/components/shopping"
   }
 }
