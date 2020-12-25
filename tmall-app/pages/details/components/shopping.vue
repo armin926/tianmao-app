@@ -51,12 +51,12 @@
 				try {
 					let enshrine = await new this.Request(this.Urls.m().enshrine, data).modepost()
 					let {
-						errcode
+						errcode,collects
 					} = enshrine.msg
-					if (errcode == '401') {
+					if (errcode === '401') {
 						this.$refs.show.showing()
-					} else {
-						
+					} else if(errcode === '200') {
+						 this.collects = collects
 					}
 				} catch (e) {
 					console.log(e)

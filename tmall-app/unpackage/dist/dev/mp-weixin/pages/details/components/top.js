@@ -150,15 +150,17 @@ var _default2 =
   data: function data() {
     return {
       num: 0,
-      navalue: [
-      {
-        name: '商品' },
+      navalue: [{
+        name: '商品',
+        current: 0 },
 
       {
-        name: '评价' },
+        name: '评价',
+        current: 1 },
 
       {
-        name: '详情' }] };
+        name: '详情',
+        current: 2 }] };
 
 
 
@@ -170,8 +172,10 @@ var _default2 =
 
 
   methods: {
-    navbtn: function navbtn(index) {
-      this.num = index;
+    navbtn: function navbtn(index) {var _this = this;
+      setTimeout(function () {
+        _this.num = index;
+      }, 200);
       if (index === 0) {
         this.backTop();
       } else {
@@ -184,6 +188,10 @@ var _default2 =
         scrollTop: 0,
         duration: 300 });
 
+    },
+    // 滚动时切换tab
+    changeTab: function changeTab(value) {
+      this.num = value;
     } } };exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

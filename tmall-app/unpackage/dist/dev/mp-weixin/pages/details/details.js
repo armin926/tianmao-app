@@ -222,7 +222,11 @@ __webpack_require__(/*! ../../public/logic.js */ 27),Login = _require.Login;var 
       comment: [],
       // 备用商品id
       goodid: '',
-      targetTop: 0 };
+      // 评论距离顶部距离
+      evaluateTop: 0,
+      // 详情图距离顶部距离
+      productTop: 0 };
+
 
   },
   components: {
@@ -239,17 +243,24 @@ __webpack_require__(/*! ../../public/logic.js */ 27),Login = _require.Login;var 
   },
   mounted: function mounted() {var _this = this;
     this.videoPlaydata = uni.createVideoContext('myVideo');
-    var query = uni.createSelectorQuery().in(this);
-    query.select('.evaluate').boundingClientRect(function (data) {
-      _this.targetTop = data.top - (_this.topheight.top + _this.topheight.height);
-    }).exec();
+    var query = this.createSelectorQuery();
+    query.select('.evaluate').boundingClientRect();
+    query.selectViewport().scrollOffset();
+    query.exec(function (res) {
+      _this.evaluateTop = res[0].top - (_this.topheight.top + _this.topheight.height);
+      _this.productTop = res[0].top + (res[1].scrollHeight - res[0].top);
+    });
   },
   // 滚动监听
   onPageScroll: function onPageScroll(e) {
-    if (e.scrollTop > this.targetTop) {
-      console.log('111');
-    }
     this.handleScroll(e.scrollTop);
+    if (e.scrollTop >= this.evaluateTop && e.scrollTop < this.productTop) {
+      this.$refs.top.changeTab(1);
+    } else if (e.scrollTop >= this.productTop) {
+      this.$refs.top.changeTab(2);
+    } else {
+      this.$refs.top.changeTab(0);
+    }
   },
   onLoad: function onLoad() {
     this.detRequest('5f8bbf2823954733542169a1');
@@ -336,10 +347,10 @@ __webpack_require__(/*! ../../public/logic.js */ 27),Login = _require.Login;var 
       query.select(clsdata).boundingClientRect();
       query.selectViewport().scrollOffset();
       query.exec(function (res) {
-        var top = res[0].top + res[1].scrollTop - height;
+        var top = res[0].top + res[1].scrollTop - height + 3;
         uni.pageScrollTo({
           scrollTop: top,
-          duration: 300 });
+          duration: 200 });
 
         // res[0].top       // #the-id节点的上边界坐标
         // res[1].scrollTop // 显示区域的竖直滚动位置

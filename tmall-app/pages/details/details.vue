@@ -10,7 +10,7 @@
 		<!-- 顶部导航栏 -->
 		<view class="header-fixed backyes" v-show="!showAbs" :style="{opacity:styleObject}">
 			<view class="status_bar" :style="'height:'+ topheight.top + 'px;'"></view>
-			<Top :topheight="topheight"></Top>
+			<Top ref="top" :topheight="topheight"></Top>
 		</view>
 		<!-- 图片视频宣传 -->
 		<!-- 注意：如果含有视频播放，在子组件里无法触发视频播放，必须要放在父组件 -->
@@ -90,7 +90,11 @@
 				comment: [],
 				// 备用商品id
 				goodid: '',
-				targetTop: 0
+				// 评论距离顶部距离
+				evaluateTop: 0,
+				// 详情图距离顶部距离
+				productTop: 0
+
 			}
 		},
 		components: {
@@ -107,17 +111,24 @@
 		},
 		mounted() {
 			this.videoPlaydata = uni.createVideoContext('myVideo')
-			const query = uni.createSelectorQuery().in(this);
-			query.select('.evaluate').boundingClientRect(data => {
-				this.targetTop = data.top - (this.topheight.top + this.topheight.height)
-			}).exec();
+			const query = this.createSelectorQuery()
+			query.select('.evaluate').boundingClientRect()
+			query.selectViewport().scrollOffset()
+			query.exec(res => {
+				this.evaluateTop = res[0].top - (this.topheight.top + this.topheight.height)
+				this.productTop = res[0].top + (res[1].scrollHeight - res[0].top)
+			})
 		},
 		// 滚动监听
 		onPageScroll(e) {
-			if (e.scrollTop > this.targetTop) {
-				console.log('111')
-			}
 			this.handleScroll(e.scrollTop)
+			if (e.scrollTop >= this.evaluateTop && e.scrollTop < this.productTop) {
+				this.$refs.top.changeTab(1)
+			} else if (e.scrollTop >= this.productTop) {
+				this.$refs.top.changeTab(2)
+			} else {
+				this.$refs.top.changeTab(0)
+			}
 		},
 		onLoad() {
 			this.detRequest('5f8bbf2823954733542169a1')
@@ -204,10 +215,10 @@
 				query.select(clsdata).boundingClientRect()
 				query.selectViewport().scrollOffset()
 				query.exec(res => {
-					let top = res[0].top + res[1].scrollTop - height
+					let top = res[0].top + res[1].scrollTop - height + 3
 					uni.pageScrollTo({
 						scrollTop: top,
-						duration: 300
+						duration: 200
 					})
 					// res[0].top       // #the-id节点的上边界坐标
 					// res[1].scrollTop // 显示区域的竖直滚动位置

@@ -51,5 +51,6 @@
     "commodity": "/pages/components/commodity",
     "loader-on": "/pages/components/loading-men",
     "showmodal": "/pages/components/showmodal"
-  }
+  },
+  "sitemapLocation": "sitemap24.json"
 }

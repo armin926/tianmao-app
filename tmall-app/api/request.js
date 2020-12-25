@@ -32,7 +32,9 @@ const urls = class {
 		let enshrine = `${url}/enshrine`
 		// 登录
 		let wxlogin = `${url}/wxlogin`
-		
+		// 获取单个商品是否收藏
+		let collection = `${url}/collection`
+
 		return {
 			getBanner,
 			getRecommurl,
@@ -45,7 +47,8 @@ const urls = class {
 			comtag,
 			comtconent,
 			enshrine,
-			wxlogin
+			wxlogin,
+			collection
 		}
 	}
 }

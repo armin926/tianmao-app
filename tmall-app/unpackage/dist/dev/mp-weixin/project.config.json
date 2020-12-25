@@ -41,6 +41,8 @@
   "libVersion": "",
   "appid": "wxc7bcec29a94b0480",
   "projectname": "tmall-app",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
       "list": []

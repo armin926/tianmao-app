@@ -159,20 +159,20 @@ var _default2 =
 
   methods: {
     // 收藏和取消收藏 401:没权限
-    collEct: function collEct(num, id) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var data, enshrine, errcode;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    collEct: function collEct(num, id) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var data, enshrine, _enshrine$msg, errcode, collects;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 data = {
                   num: num,
                   id: id };_context.prev = 1;_context.next = 4;return (
 
 
-                  new _this.Request(_this.Urls.m().enshrine, data).modepost());case 4:enshrine = _context.sent;
+                  new _this.Request(_this.Urls.m().enshrine, data).modepost());case 4:enshrine = _context.sent;_enshrine$msg =
 
-                errcode =
-                enshrine.msg.errcode;
-                if (errcode == '401') {
+
+                enshrine.msg, errcode = _enshrine$msg.errcode, collects = _enshrine$msg.collects;
+                if (errcode === '401') {
                   _this.$refs.show.showing();
-                } else {
-
+                } else if (errcode === '200') {
+                  _this.collects = collects;
                 }_context.next = 12;break;case 9:_context.prev = 9;_context.t0 = _context["catch"](1);
 
                 console.log(_context.t0);case 12:case "end":return _context.stop();}}}, _callee, null, [[1, 9]]);}))();

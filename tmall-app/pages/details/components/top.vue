@@ -6,7 +6,7 @@
 			</view>
 			<view class="navs">
 				<block v-for="(item, index) in navalue" :key="index">
-					<view class="navs-nav" :class="{ navactivetext: index == num }" :style=" 'height:' + topheight.height + 'px;' + 'line-height:' + topheight.height + 'px;' "
+					<view class="navs-nav" :class="{ navactivetext: item.current == num }" :style=" 'height:' + topheight.height + 'px;' + 'line-height:' + topheight.height + 'px;' "
 					 @click="navbtn(index)">{{item.name}}</view>
 				</block>
 			</view>
@@ -17,44 +17,52 @@
 </template>
 
 <script>
-	export default{
-		data(){
-			return{
+	export default {
+		data() {
+			return {
 				num: 0,
-				navalue: [
-					{
-						name: '商品'
+				navalue: [{
+						name: '商品',
+						current: 0
 					},
 					{
-						name: '评价'
+						name: '评价',
+						current: 1
 					},
 					{
-						name: '详情'
+						name: '详情',
+						current: 2
 					}
 				]
 			}
 		},
-		props:{
+		props: {
 			topheight: {
 				type: Object,
-				default: ()=>{}
+				default: () => {}
 			}
 		},
-		methods:{
-			navbtn(index){
-				this.num = index
-				if(index === 0){
+		methods: {
+			navbtn(index) {
+				setTimeout(() => {
+					this.num = index
+				}, 200)
+				if (index === 0) {
 					this.backTop()
-				}else {
+				} else {
 					this.$parent.fathEr(index)
 				}
 			},
 			// 回到顶部
-			backTop(){
+			backTop() {
 				uni.pageScrollTo({
-					scrollTop:0,
-					duration:300
+					scrollTop: 0,
+					duration: 300
 				})
+			},
+			// 滚动时切换tab
+			changeTab(value) {
+				this.num = value
 			}
 		}
 	}
