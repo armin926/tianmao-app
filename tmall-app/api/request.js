@@ -34,6 +34,8 @@ const urls = class {
 		let wxlogin = `${url}/wxlogin`
 		// 获取单个商品是否收藏
 		let collection = `${url}/collection`
+		// 购物车数据
+		let mycart = `${url}/mycart`
 
 		return {
 			getBanner,
@@ -48,7 +50,8 @@ const urls = class {
 			comtconent,
 			enshrine,
 			wxlogin,
-			collection
+			collection,
+			mycart
 		}
 	}
 }

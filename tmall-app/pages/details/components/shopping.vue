@@ -32,13 +32,46 @@
 	export default {
 		data() {
 			return {
-				collects: 0
+				collects: 0,
+				cartnum: 0
 			}
 		},
 		props: {
 			goodid: {
 				type: String,
 				default: () => ''
+			},
+			colldata: {
+				type: Object,
+				default: () => {}
+			},
+			cartdata: {
+				type: Object,
+				default: () => {}
+			}
+		},
+		// 接收登录组件传过来的值
+		created() {
+			this.$bus.$on('collict',res=>{
+				if(res.colldata === 'SUCCESS'){
+					// 登录成功后更新收藏状态
+					this.reFresh()
+				}
+			})
+		},
+		watch: {
+			// 获取该商品是否收藏
+			colldata(newVal,oldVal){
+				let {collects} = newVal.msg
+				this.collects = collects
+			},
+			// 获取购物车件数
+			cartdata(newVal,oldVal){
+				if(newVal.msg.errcode){
+					this.cartnum = 0
+				}else if(newVal.msg === 'SUCCESS'){
+					this.cartnum = newVal.data.length
+				}
 			}
 		},
 		methods: {
@@ -54,12 +87,27 @@
 						errcode,collects
 					} = enshrine.msg
 					if (errcode === '401') {
-						this.$refs.show.showing()
+						this.$refs.show.showing('coll')
 					} else if(errcode === '200') {
 						 this.collects = collects
 					}
 				} catch (e) {
 					console.log(e)
+				}
+			},
+			// 登录成功后更新收藏状态
+			async reFresh(){
+				// 获取商品是否收藏
+				let collection = new this.Request(this.Urls.m().collection + '?id=' + this.goodid).modeget()
+				// 更新购物车
+				let mycart = new this.Request(this.Urls.m().mycart).modeget()
+				try{
+					let res = await Promise.all([collection,mycart])
+					this.collects = res[0].msg.collects
+					
+					this.cartnum = res[1].data.length
+				}catch(e){
+					//TODO handle the exception
 				}
 			}
 		}

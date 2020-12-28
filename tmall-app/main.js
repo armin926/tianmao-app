@@ -10,6 +10,7 @@ import urls from './api/request.js'
 import request from './api/api.js'
 // toast弹窗
 import toast from './public/toast.js'
+Vue.prototype.$Toast = toast
 // 引入全局组件
 import Commodity from './pages/components/commodity.vue'
 import loadingMen from './pages/components/loading-men.vue'
@@ -24,7 +25,6 @@ import './pattern/styles.css'
 
 Vue.prototype.Request = request
 Vue.prototype.Urls = urls
-Vue.prototype.$Toast = toast
 Vue.config.productionTip = false
 Vue.component('Commodity',Commodity)
 Vue.component('loader-on',loadingMen)

@@ -17,11 +17,14 @@
 	export default {
 		data() {
 			return {
-				modeling: false
+				modeling: false,
+				// 告知是哪个组件传值过来
+				msg: ''
 			}
 		},
 		methods: {
-			showing() {
+			showing(msg = '') {
+				this.msg = msg
 				this.modeling = true
 			},
 			cancel() {
@@ -29,7 +32,11 @@
 			},
 			// 登录
 			async getUserInfo(e) {
-				new this.$Toast('登录中').showloading()
+				// new this.$Toast('登录中').showloading()
+				uni.showLoading({
+					title:'登录中',
+					mask:true
+				})
 				this.modeling = false
 				let {
 					errMsg,
@@ -37,6 +44,10 @@
 				} = e.detail
 				try {
 					let data = await new wxLogin(userInfo, errMsg).loGin()
+					if(this.msg == 'coll'){
+						// 更新收藏状态
+						this.$bus.$emit('collict', {colldata:data})
+					}
 				} catch (e) {
 					//TODO handle the exception
 				}

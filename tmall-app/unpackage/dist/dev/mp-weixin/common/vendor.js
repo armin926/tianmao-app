@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"tmall-app","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tmall-app","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1993,6 +1993,8 @@ var urls = /*#__PURE__*/function () {
       var wxlogin = "".concat(url, "/wxlogin");
       // 获取单个商品是否收藏
       var collection = "".concat(url, "/collection");
+      // 购物车数据
+      var mycart = "".concat(url, "/mycart");
 
       return {
         getBanner: getBanner,
@@ -2007,7 +2009,8 @@ var urls = /*#__PURE__*/function () {
         comtconent: comtconent,
         enshrine: enshrine,
         wxlogin: wxlogin,
-        collection: collection };
+        collection: collection,
+        mycart: mycart };
 
     } }]);return urls;}();var _default =
 
@@ -2025,7 +2028,7 @@ urls;exports.default = _default;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;} // request请求
-var Base64 = __webpack_require__(/*! ./base64.js */ 185).Base64;
+var Base64 = __webpack_require__(/*! ./base64.js */ 14).Base64;
 var request = /*#__PURE__*/function () {
   function request(url, arg) {_classCallCheck(this, request);
     this.url = url;
@@ -2073,84 +2076,6 @@ request;exports.default = _default;
 /***/ }),
 
 /***/ 14:
-/*!************************************************!*\
-  !*** G:/tianmao-app/tmall-app/public/toast.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;} // 一些弹窗
-var Toast = /*#__PURE__*/function () {
-  function Toast(title) {var icon = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "success";var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 2000;var mask = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;_classCallCheck(this, Toast);
-    this.tite = title;
-    this.icon = icon;
-    this.duration = duration;
-    this.mask = mask;
-  }
-  // 消息提示框: 自动消失
-  _createClass(Toast, [{ key: "showtoast", value: function showtoast() {
-      uni.showToast({
-        title: this.title,
-        icon: this.icon,
-        duration: this.duration,
-        mask: this.mask });
-
-    }
-    // 消息提示框：手动消失
-  }, { key: "showloading", value: function showloading() {
-      uni.showLoading({
-        title: this.titie,
-        mask: this.mask });
-
-    } }]);return Toast;}();var _default =
-
-
-Toast;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 15:
-/*!************************************************!*\
-  !*** G:/tianmao-app/tmall-app/style/style.css ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-    if(false) { var cssReload; }
-  
-
-/***/ }),
-
-/***/ 16:
-/*!***************************************************!*\
-  !*** G:/tianmao-app/tmall-app/pattern/animat.css ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-    if(false) { var cssReload; }
-  
-
-/***/ }),
-
-/***/ 17:
-/*!***************************************************!*\
-  !*** G:/tianmao-app/tmall-app/pattern/styles.css ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-    if(false) { var cssReload; }
-  
-
-/***/ }),
-
-/***/ 185:
 /*!**********************************************!*\
   !*** G:/tianmao-app/tmall-app/api/base64.js ***!
   \**********************************************/
@@ -2382,6 +2307,84 @@ function (global) {
   return { Base64: global.Base64 };
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! (webpack)/buildin/global.js */ 3)))
+
+/***/ }),
+
+/***/ 15:
+/*!************************************************!*\
+  !*** G:/tianmao-app/tmall-app/public/toast.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;} // 一些弹窗
+var Toast = /*#__PURE__*/function () {
+  function Toast(title) {var icon = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "success";var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 2000;var mask = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;_classCallCheck(this, Toast);
+    this.tite = title;
+    this.icon = icon;
+    this.duration = duration;
+    this.mask = mask;
+  }
+  // 消息提示框: 自动消失
+  _createClass(Toast, [{ key: "showtoast", value: function showtoast() {
+      uni.showToast({
+        title: this.title,
+        icon: this.icon,
+        duration: this.duration,
+        mask: this.mask });
+
+    }
+    // 消息提示框：手动消失
+  }, { key: "showloading", value: function showloading() {
+      uni.showLoading({
+        title: this.titie,
+        mask: this.mask });
+
+    } }]);return Toast;}();var _default =
+
+
+Toast;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 16:
+/*!************************************************!*\
+  !*** G:/tianmao-app/tmall-app/style/style.css ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+    if(false) { var cssReload; }
+  
+
+/***/ }),
+
+/***/ 17:
+/*!***************************************************!*\
+  !*** G:/tianmao-app/tmall-app/pattern/animat.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+    if(false) { var cssReload; }
+  
+
+/***/ }),
+
+/***/ 18:
+/*!***************************************************!*\
+  !*** G:/tianmao-app/tmall-app/pattern/styles.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+    if(false) { var cssReload; }
+  
 
 /***/ }),
 
@@ -7911,7 +7914,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"tmall-app","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tmall-app","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7932,14 +7935,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"tmall-app","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"tmall-app","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"tmall-app","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"tmall-app","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8025,7 +8028,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"tmall-app","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tmall-app","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8432,18 +8435,18 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 24:
+/***/ 25:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 25);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 26);
 
 /***/ }),
 
-/***/ 25:
+/***/ 26:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8474,7 +8477,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 26);
+module.exports = __webpack_require__(/*! ./runtime */ 27);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8491,7 +8494,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 26:
+/***/ 27:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -9223,7 +9226,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 27:
+/***/ 28:
 /*!************************************************!*\
   !*** G:/tianmao-app/tmall-app/public/logic.js ***!
   \************************************************/
@@ -9297,7 +9300,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 91:
+/***/ 92:
 /*!***********************************************!*\
   !*** G:/tianmao-app/tmall-app/login/login.js ***!
   \***********************************************/
@@ -9305,10 +9308,10 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 24));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 25));
 var _api = _interopRequireDefault(__webpack_require__(/*! ../api/api.js */ 13));
 var _request = _interopRequireDefault(__webpack_require__(/*! ../api/request.js */ 12));
-var _toast = _interopRequireDefault(__webpack_require__(/*! ../public/toast.js */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+var _toast = _interopRequireDefault(__webpack_require__(/*! ../public/toast.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 wxLogin = /*#__PURE__*/function () {
   function wxLogin(user, msg) {_classCallCheck(this, wxLogin);
     this.user = user;
@@ -9326,7 +9329,11 @@ wxLogin = /*#__PURE__*/function () {
                   new _api.default(_request.default.m().wxlogin, userdata).modepost());case 8:user = _context.sent;if (!(
                 user.msg === 'SUCCESS')) {_context.next = 13;break;}
                 uni.setStorageSync('wxuser', user.data); // 存储用户信息到本地缓存
-                new _toast.default('登录成功').showtoast();return _context.abrupt("return",
+                // new toast('登录成功').showtoast()
+                uni.showToast({
+                  title: '登陆成功',
+                  icon: 'success' });return _context.abrupt("return",
+
                 'SUCCESS');case 13:_context.next = 18;break;case 15:_context.prev = 15;_context.t0 = _context["catch"](5);return _context.abrupt("return", _context.t0);case 18:case "end":return _context.stop();}}}, _callee, this, [[5, 15]]);}));function loGin() {return _loGin.apply(this, arguments);}return loGin;}()
 
 

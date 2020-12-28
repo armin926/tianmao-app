@@ -48,7 +48,7 @@
 		<!-- 商品详情图 -->
 		<Produce :priceetc="priceetc" class="produce"></Produce>
 		<!-- 底部操作栏 -->
-		<Shopping :goodid="goodid"></Shopping>
+		<Shopping :goodid="goodid" :colldata="colldata" :cartdata="cartdata"></Shopping>
 	</view>
 </template>
 
@@ -93,7 +93,11 @@
 				// 评论距离顶部距离
 				evaluateTop: 0,
 				// 详情图距离顶部距离
-				productTop: 0
+				productTop: 0,
+				// 获取商品是否收藏
+				colldata: {},
+				// 获取购物车数据
+				cartdata: {}
 
 			}
 		},
@@ -139,8 +143,12 @@
 				let introduce = new this.Request(this.Urls.m().getIntroduceurl + '?id=' + id).modeget()
 				// 评价
 				let wxcommnt = new this.Request(this.Urls.m().wxcommnt + '?id=' + id).modeget()
+				// 获取商品是否收藏
+				let collection = new this.Request(this.Urls.m().collection + '?id=' + id).modeget()
+				// 获取购物车的件数
+				let mycart = new this.Request(this.Urls.m().mycart).modeget()
 				try {
-					let res = await Promise.all([introduce, wxcommnt])
+					let res = await Promise.all([introduce, wxcommnt,collection,mycart])
 					// 图片视频的数据
 					this.imagetext = res[0].data
 					let mendata = res[0].data[0]
@@ -152,6 +160,10 @@
 					this.priceetc = describe
 					// 评价
 					this.comment = res[1].data
+					// 获取该商品是否收藏
+					this.colldata = res[2]
+					// 获取购物车数据
+					this.cartdata = res[3]
 					// 如果有视频不显示面板指示点
 					this.truevideo = mendata.media[0].video
 					this.dots = this.truevideo === '' ? true : false

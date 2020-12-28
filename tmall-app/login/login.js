@@ -19,7 +19,11 @@ class wxLogin {
 			let user = await new request(urls.m().wxlogin, userdata).modepost()
 			if (user.msg === 'SUCCESS') {
 				uni.setStorageSync('wxuser', user.data) // 存储用户信息到本地缓存
-				new toast('登录成功').showtoast()
+				// new toast('登录成功').showtoast()
+				uni.showToast({
+					title: '登陆成功',
+					icon: 'success'
+				})
 				return('SUCCESS')
 			}
 		} catch (e) {
