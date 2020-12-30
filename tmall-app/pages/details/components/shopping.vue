@@ -20,8 +20,8 @@
 				<image src="/static/details/yishoucang.svg" mode="widthFix" />
 				<text>已收藏</text>
 			</view>
-			<view class="join join-right">加入购物车</view>
-			<view class="join join-left">立即购买</view>
+			<view class="join join-right" @click="couponsFun('002')">加入购物车</view>
+			<view class="join join-left" @click="couponsFun('003')">立即购买</view>
 		</view>
 		<!-- 登录弹窗 -->
 		<showmodal ref="show"></showmodal>
@@ -109,6 +109,10 @@
 				}catch(e){
 					//TODO handle the exception
 				}
+			},
+			// 调用父组件里的sku组件
+			couponsFun(mean){
+				this.$parent.shoPp(mean)
 			}
 		}
 	}

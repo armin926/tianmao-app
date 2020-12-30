@@ -184,11 +184,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 // 预览图片
 var _require =
 
-__webpack_require__(/*! ../../public/logic.js */ 28),Login = _require.Login;var Top = function Top() {__webpack_require__.e(/*! require.ensure | pages/details/components/top */ "pages/details/components/top").then((function () {return resolve(__webpack_require__(/*! ./components/top.vue */ 95));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Price = function Price() {__webpack_require__.e(/*! require.ensure | pages/details/components/price */ "pages/details/components/price").then((function () {return resolve(__webpack_require__(/*! ./components/price.vue */ 102));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Parame = function Parame() {__webpack_require__.e(/*! require.ensure | pages/details/components/parame */ "pages/details/components/parame").then((function () {return resolve(__webpack_require__(/*! ./components/parame.vue */ 109));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Evaluate = function Evaluate() {__webpack_require__.e(/*! require.ensure | pages/details/components/evaluate */ "pages/details/components/evaluate").then((function () {return resolve(__webpack_require__(/*! ./components/evaluate.vue */ 116));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Produce = function Produce() {__webpack_require__.e(/*! require.ensure | pages/details/components/product */ "pages/details/components/product").then((function () {return resolve(__webpack_require__(/*! ./components/product.vue */ 123));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Shopping = function Shopping() {__webpack_require__.e(/*! require.ensure | pages/details/components/shopping */ "pages/details/components/shopping").then((function () {return resolve(__webpack_require__(/*! ./components/shopping.vue */ 130));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+__webpack_require__(/*! ../../public/logic.js */ 28),Login = _require.Login;var Top = function Top() {__webpack_require__.e(/*! require.ensure | pages/details/components/top */ "pages/details/components/top").then((function () {return resolve(__webpack_require__(/*! ./components/top.vue */ 95));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Price = function Price() {__webpack_require__.e(/*! require.ensure | pages/details/components/price */ "pages/details/components/price").then((function () {return resolve(__webpack_require__(/*! ./components/price.vue */ 102));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Parame = function Parame() {__webpack_require__.e(/*! require.ensure | pages/details/components/parame */ "pages/details/components/parame").then((function () {return resolve(__webpack_require__(/*! ./components/parame.vue */ 109));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Evaluate = function Evaluate() {__webpack_require__.e(/*! require.ensure | pages/details/components/evaluate */ "pages/details/components/evaluate").then((function () {return resolve(__webpack_require__(/*! ./components/evaluate.vue */ 116));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Produce = function Produce() {__webpack_require__.e(/*! require.ensure | pages/details/components/product */ "pages/details/components/product").then((function () {return resolve(__webpack_require__(/*! ./components/product.vue */ 123));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Shopping = function Shopping() {__webpack_require__.e(/*! require.ensure | pages/details/components/shopping */ "pages/details/components/shopping").then((function () {return resolve(__webpack_require__(/*! ./components/shopping.vue */ 130));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Addtocart = function Addtocart() {__webpack_require__.e(/*! require.ensure | pages/components/addtocart */ "pages/components/addtocart").then((function () {return resolve(__webpack_require__(/*! ../components/addtocart.vue */ 137));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
 
 
 
@@ -229,7 +233,9 @@ __webpack_require__(/*! ../../public/logic.js */ 28),Login = _require.Login;var 
       // 获取商品是否收藏
       colldata: {},
       // 获取购物车数据
-      cartdata: {} };
+      cartdata: {},
+      // 获取商品sku数据
+      skudata: [] };
 
 
   },
@@ -239,7 +245,8 @@ __webpack_require__(/*! ../../public/logic.js */ 28),Login = _require.Login;var 
     Parame: Parame,
     Evaluate: Evaluate,
     Produce: Produce,
-    Shopping: Shopping },
+    Shopping: Shopping,
+    Addtocart: Addtocart },
 
   created: function created() {
     // 获取胶囊按钮的数据
@@ -271,16 +278,18 @@ __webpack_require__(/*! ../../public/logic.js */ 28),Login = _require.Login;var 
   },
   methods: {
     // 请求数据
-    detRequest: function detRequest(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var introduce, wxcommnt, collection, mycart, res, mendata, describe;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    detRequest: function detRequest(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var introduce, wxcommnt, collection, mycart, wxsku, res, mendata, describe, defaultdata;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 introduce = new _this2.Request(_this2.Urls.m().getIntroduceurl + '?id=' + id).modeget();
                 // 评价
                 wxcommnt = new _this2.Request(_this2.Urls.m().wxcommnt + '?id=' + id).modeget();
                 // 获取商品是否收藏
                 collection = new _this2.Request(_this2.Urls.m().collection + '?id=' + id).modeget();
                 // 获取购物车的件数
-                mycart = new _this2.Request(_this2.Urls.m().mycart).modeget();_context.prev = 4;_context.next = 7;return (
+                mycart = new _this2.Request(_this2.Urls.m().mycart).modeget();
+                // 获取商品sku数据
+                wxsku = new _this2.Request(_this2.Urls.m().wxsku + '?id=' + id).modeget();_context.prev = 5;_context.next = 8;return (
 
-                  Promise.all([introduce, wxcommnt, collection, mycart]));case 7:res = _context.sent;
+                  Promise.all([introduce, wxcommnt, collection, mycart, wxsku]));case 8:res = _context.sent;
                 // 图片视频的数据
                 _this2.imagetext = res[0].data;
                 mendata = res[0].data[0];
@@ -296,9 +305,19 @@ __webpack_require__(/*! ../../public/logic.js */ 28),Login = _require.Login;var 
                 _this2.colldata = res[2];
                 // 获取购物车数据
                 _this2.cartdata = res[3];
+                // 获取商品sku数据
+                defaultdata = {
+                  image: mendata.media[0].imgArray[0],
+                  price: mendata.describe.Trueprice,
+                  totalstock: mendata.describe.Total_stock,
+                  id: mendata.id,
+                  title: mendata.describe.title };
+
+                _this2.skudata = res[4].data;
+                _this2.skudata.push(defaultdata);
                 // 如果有视频不显示面板指示点
                 _this2.truevideo = mendata.media[0].video;
-                _this2.dots = _this2.truevideo === '' ? true : false;_context.next = 23;break;case 21:_context.prev = 21;_context.t0 = _context["catch"](4);case 23:case "end":return _context.stop();}}}, _callee, null, [[4, 21]]);}))();
+                _this2.dots = _this2.truevideo === '' ? true : false;_context.next = 27;break;case 25:_context.prev = 25;_context.t0 = _context["catch"](5);case 27:case "end":return _context.stop();}}}, _callee, null, [[5, 25]]);}))();
 
 
 
@@ -367,6 +386,10 @@ __webpack_require__(/*! ../../public/logic.js */ 28),Login = _require.Login;var 
         // res[0].top       // #the-id节点的上边界坐标
         // res[1].scrollTop // 显示区域的竖直滚动位置
       });
+    },
+    // 被子组件shopping调用
+    shoPp: function shoPp(mean) {
+      this.$refs.addto.showCou(mean);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

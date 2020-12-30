@@ -36,6 +36,8 @@ const urls = class {
 		let collection = `${url}/collection`
 		// 购物车数据
 		let mycart = `${url}/mycart`
+		// 商品sku
+		let wxsku = `${url}/wxsku`
 
 		return {
 			getBanner,
@@ -51,7 +53,8 @@ const urls = class {
 			enshrine,
 			wxlogin,
 			collection,
-			mycart
+			mycart,
+			wxsku
 		}
 	}
 }

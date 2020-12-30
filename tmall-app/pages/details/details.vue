@@ -49,6 +49,8 @@
 		<Produce :priceetc="priceetc" class="produce"></Produce>
 		<!-- 底部操作栏 -->
 		<Shopping :goodid="goodid" :colldata="colldata" :cartdata="cartdata"></Shopping>
+		<!-- 公用商品sku选择组件 -->
+		<Addtocart ref="addto" :skudata="skudata"></Addtocart>
 	</view>
 </template>
 
@@ -63,6 +65,8 @@
 	import Evaluate from './components/evaluate.vue'
 	import Produce from './components/product.vue'
 	import Shopping from './components/shopping.vue'
+	// 公用的商品sku选择组件
+	import Addtocart from '../components/addtocart.vue'
 	export default {
 		data() {
 			return {
@@ -97,7 +101,9 @@
 				// 获取商品是否收藏
 				colldata: {},
 				// 获取购物车数据
-				cartdata: {}
+				cartdata: {},
+				// 获取商品sku数据
+				skudata: []
 
 			}
 		},
@@ -107,7 +113,8 @@
 			Parame,
 			Evaluate,
 			Produce,
-			Shopping
+			Shopping,
+			Addtocart
 		},
 		created() {
 			// 获取胶囊按钮的数据
@@ -147,8 +154,10 @@
 				let collection = new this.Request(this.Urls.m().collection + '?id=' + id).modeget()
 				// 获取购物车的件数
 				let mycart = new this.Request(this.Urls.m().mycart).modeget()
+				// 获取商品sku数据
+				let wxsku = new this.Request(this.Urls.m().wxsku + '?id=' + id).modeget()
 				try {
-					let res = await Promise.all([introduce, wxcommnt,collection,mycart])
+					let res = await Promise.all([introduce, wxcommnt,collection,mycart,wxsku])
 					// 图片视频的数据
 					this.imagetext = res[0].data
 					let mendata = res[0].data[0]
@@ -164,6 +173,16 @@
 					this.colldata = res[2]
 					// 获取购物车数据
 					this.cartdata = res[3]
+					// 获取商品sku数据
+					let defaultdata = {
+						image: mendata.media[0].imgArray[0],
+						price: mendata.describe.Trueprice,
+						totalstock:mendata.describe.Total_stock,
+						id: mendata.id,
+						title: mendata.describe.title
+					}
+					this.skudata = res[4].data
+					this.skudata.push(defaultdata)
 					// 如果有视频不显示面板指示点
 					this.truevideo = mendata.media[0].video
 					this.dots = this.truevideo === '' ? true : false
@@ -235,6 +254,10 @@
 					// res[0].top       // #the-id节点的上边界坐标
 					// res[1].scrollTop // 显示区域的竖直滚动位置
 				})
+			},
+			// 被子组件shopping调用
+			shoPp(mean){
+				this.$refs.addto.showCou(mean)
 			}
 		}
 	}

@@ -8,6 +8,7 @@
     "parame": "/pages/details/components/parame",
     "evaluate": "/pages/details/components/evaluate",
     "produce": "/pages/details/components/product",
-    "shopping": "/pages/details/components/shopping"
+    "shopping": "/pages/details/components/shopping",
+    "addtocart": "/pages/components/addtocart"
   }
 }

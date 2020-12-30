@@ -225,6 +225,10 @@ var _default2 =
 
 
 
+    },
+    // 调用父组件里的sku组件
+    couponsFun: function couponsFun(mean) {
+      this.$parent.shoPp(mean);
     } } };exports.default = _default2;
 
 /***/ }),

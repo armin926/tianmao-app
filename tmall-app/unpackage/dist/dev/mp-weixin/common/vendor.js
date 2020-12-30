@@ -1995,6 +1995,8 @@ var urls = /*#__PURE__*/function () {
       var collection = "".concat(url, "/collection");
       // 购物车数据
       var mycart = "".concat(url, "/mycart");
+      // 商品sku
+      var wxsku = "".concat(url, "/wxsku");
 
       return {
         getBanner: getBanner,
@@ -2010,7 +2012,8 @@ var urls = /*#__PURE__*/function () {
         enshrine: enshrine,
         wxlogin: wxlogin,
         collection: collection,
-        mycart: mycart };
+        mycart: mycart,
+        wxsku: wxsku };
 
     } }]);return urls;}();var _default =
 
