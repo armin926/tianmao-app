@@ -1997,6 +1997,8 @@ var urls = /*#__PURE__*/function () {
       var mycart = "".concat(url, "/mycart");
       // 商品sku
       var wxsku = "".concat(url, "/wxsku");
+      // 获取每个sku的库存，价格
+      var querysku = "".concat(url, "/querysku");
 
       return {
         getBanner: getBanner,
@@ -2013,7 +2015,8 @@ var urls = /*#__PURE__*/function () {
         wxlogin: wxlogin,
         collection: collection,
         mycart: mycart,
-        wxsku: wxsku };
+        wxsku: wxsku,
+        querysku: querysku };
 
     } }]);return urls;}();var _default =
 

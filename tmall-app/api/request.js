@@ -38,6 +38,8 @@ const urls = class {
 		let mycart = `${url}/mycart`
 		// 商品sku
 		let wxsku = `${url}/wxsku`
+		// 获取每个sku的库存，价格
+		let querysku = `${url}/querysku`
 
 		return {
 			getBanner,
@@ -54,7 +56,8 @@ const urls = class {
 			wxlogin,
 			collection,
 			mycart,
-			wxsku
+			wxsku,
+			querysku
 		}
 	}
 }

@@ -26,7 +26,7 @@
 				<text class="sku-title">主要颜色</text>
 				<view class="sku-mian">
 					<block v-for="(item,index) in skudata[1]" :key="index">
-						<view>
+						<view @click="colorFun(item.color,index)" :class="{active:index===colornum}">
 							<image :src="item.image" mode="aspectFill"></image>
 							<text>{{item.color}}</text>
 						</view>
@@ -38,7 +38,7 @@
 				<text class="sku-title">尺码</text>
 				<view class="sku-mian sku-two">
 					<block v-for="(item,index) in skudata[0]" :key="index">
-						<view>{{item}}</view>
+						<view @click="sizeFun(item,index)" :class="{active:index===sizenum}">{{item}}</view>
 					</block>
 				</view>
 			</view>
@@ -46,25 +46,25 @@
 			<view class="sku-view sku-height" v-if="mean != '001'">
 				<view class="sku-title numes">购买数量</view>
 				<view class="sku-mums-gight">
-					<view>-</view>
+					<view @click="reDuce()">-</view>
 					<view>{{many}}</view>
-					<view>+</view>
+					<view @click="pLus()">+</view>
 				</view>
 			</view>
 		</view>
 		<!-- 确定 -->
-		<view class="determine coup-anim" v-if="mean == '001'" >确定</view>
-		<view class="determine coup-anim" v-if="mean == '002'" >确定</view>
-		<view class="determine coup-anim" v-if="mean == '003'" >确定</view>
+		<view class="determine coup-anim" v-if="mean == '001'">确定</view>
+		<view class="determine coup-anim" v-if="mean == '002'" @click="skumen.ban && detErmine()">确定</view>
+		<view class="determine coup-anim" v-if="mean == '003'">确定</view>
 		<!-- 登录弹窗 -->
 		<showmodal ref="show"></showmodal>
 	</view>
 </template>
 
 <script>
-	export default{
-		data(){
-			return{
+	export default {
+		data() {
+			return {
 				// 显示/隐藏该组件
 				couponif: false,
 				// 002: 加入购物车；003：直接购买
@@ -74,31 +74,121 @@
 				// 商品展示的sku
 				attribute: {},
 				// 标题
-				title: ''
+				title: '',
+				// 选了颜色
+				colornum: -1,
+				colorvalue: '',
+				// 选了尺码
+				sizenum: -1,
+				sizevalue: '',
+				// 购买数量
+				many: 1
 			}
 		},
 		props: {
-			skudata:{
+			skudata: {
 				type: Array,
 				default: () => []
 			}
 		},
 		watch: {
 			// 获取父组件来的sku默认展示数据
-			skudata(newVal,oldVal){
+			skudata(newVal, oldVal) {
 				this.id = newVal[2].id
 				this.attribute = newVal[2]
 				this.title = newVal[2].title
+			},
+			// 是否选择了尺码和颜色条件
+			skumen(newVal, oldVal) {
+				let {
+					color,
+					size
+				} = newVal
+				if (color && size) {
+					this.skuRequest({
+						id: this.id,
+						size,
+						color
+					})
+				}
 			}
 		},
-		methods:{
+		computed: {
+			// 选择sku的改变
+			choice() {
+				if (this.colorvalue === '' || this.sizevalue === '') {
+					return '请选择'
+				} else {
+					return '已选择'
+				}
+			},
+			skumen() {
+				if (this.sizevalue && this.colorvalue) {
+					return {
+						color: this.colorvalue,
+						size: this.sizevalue,
+						ban: true
+					}
+				} else if (this.sizevalue === '' && this.colorvalue === '') {
+					return {
+						color: '主要颜色',
+						size: '尺码',
+						ban: false
+					}
+				} else if (this.sizevalue === '' && this.colorvalue) {
+					return {
+						color: '',
+						size: '尺码',
+						ban: false
+					}
+				} else if (this.sizevalue && this.colorvalue === '') {
+					return {
+						color: '主要颜色',
+						size: '',
+						ban: false
+					}
+				}
+			}
+		},
+		methods: {
 			// 被其他组件调用显示sku组件
-			showCou(mean){
+			showCou(mean) {
 				this.mean = mean
 				this.couponif = true
 			},
-			hideCou(){
+			hideCou() {
 				this.couponif = false
+			},
+			// 选择颜色
+			colorFun(color, index) {
+				this.colornum = index
+				this.colorvalue = color
+			},
+			// 选择尺码
+			sizeFun(size, index) {
+				this.sizenum = index
+				this.sizevalue = size
+			},
+			// 减商品数量
+			reDuce() {
+				this.many <=1 ? this.many = 1 : this.many--
+			},
+			// 加数量
+			pLus() {
+				this.many++
+			},
+			// 加入购物车
+			detErmine() {
+
+			},
+			// 请求每个sku的数据
+			async skuRequest(obj) {
+				try {
+					let querysku = await new this.Request(this.Urls.m().querysku, obj).modepost()
+					this.attribute = querysku.data[0]
+				} catch (e) {
+					//TODO handle the exception
+				}
 			}
 		}
 	}

@@ -81,6 +81,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event) {
+      _vm.skumen.ban && _vm.detErmine()
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -114,7 +119,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 25));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -190,7 +195,15 @@ var _default2 =
       // 商品展示的sku
       attribute: {},
       // 标题
-      title: '' };
+      title: '',
+      // 选了颜色
+      colornum: -1,
+      colorvalue: '',
+      // 选了尺码
+      sizenum: -1,
+      sizevalue: '',
+      // 购买数量
+      many: 1 };
 
   },
   props: {
@@ -205,6 +218,57 @@ var _default2 =
       this.id = newVal[2].id;
       this.attribute = newVal[2];
       this.title = newVal[2].title;
+    },
+    // 是否选择了尺码和颜色条件
+    skumen: function skumen(newVal, oldVal) {var
+
+      color =
+
+      newVal.color,size = newVal.size;
+      if (color && size) {
+        this.skuRequest({
+          id: this.id,
+          size: size,
+          color: color });
+
+      }
+    } },
+
+  computed: {
+    // 选择sku的改变
+    choice: function choice() {
+      if (this.colorvalue === '' || this.sizevalue === '') {
+        return '请选择';
+      } else {
+        return '已选择';
+      }
+    },
+    skumen: function skumen() {
+      if (this.sizevalue && this.colorvalue) {
+        return {
+          color: this.colorvalue,
+          size: this.sizevalue,
+          ban: true };
+
+      } else if (this.sizevalue === '' && this.colorvalue === '') {
+        return {
+          color: '主要颜色',
+          size: '尺码',
+          ban: false };
+
+      } else if (this.sizevalue === '' && this.colorvalue) {
+        return {
+          color: '',
+          size: '尺码',
+          ban: false };
+
+      } else if (this.sizevalue && this.colorvalue === '') {
+        return {
+          color: '主要颜色',
+          size: '',
+          ban: false };
+
+      }
     } },
 
   methods: {
@@ -215,6 +279,37 @@ var _default2 =
     },
     hideCou: function hideCou() {
       this.couponif = false;
+    },
+    // 选择颜色
+    colorFun: function colorFun(color, index) {
+      this.colornum = index;
+      this.colorvalue = color;
+    },
+    // 选择尺码
+    sizeFun: function sizeFun(size, index) {
+      this.sizenum = index;
+      this.sizevalue = size;
+    },
+    // 减商品数量
+    reDuce: function reDuce() {
+      this.many <= 1 ? this.many = 1 : this.many--;
+    },
+    // 加数量
+    pLus: function pLus() {
+      this.many++;
+    },
+    // 加入购物车
+    detErmine: function detErmine() {
+
+    },
+    // 请求每个sku的数据
+    skuRequest: function skuRequest(obj) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var querysku;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.prev = 0;_context.next = 3;return (
+
+                  new _this.Request(_this.Urls.m().querysku, obj).modepost());case 3:querysku = _context.sent;
+                _this.attribute = querysku.data[0];_context.next = 9;break;case 7:_context.prev = 7;_context.t0 = _context["catch"](0);case 9:case "end":return _context.stop();}}}, _callee, null, [[0, 7]]);}))();
+
+
+
     } } };exports.default = _default2;
 
 /***/ }),
