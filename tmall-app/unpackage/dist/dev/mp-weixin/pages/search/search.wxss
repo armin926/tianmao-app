@@ -11,8 +11,7 @@
 	-webkit-flex-direction: row;
 	        flex-direction: row;
 	background: #FFFFFF;
-	-webkit-border-radius: 20rpx;
-	        border-radius: 20rpx;
+	border-radius: 20rpx;
 	margin-left: 20rpx;
 }
 .search input.data-v-4cedc0c6 {
@@ -68,8 +67,7 @@
 }
 .menu-block view.data-v-4cedc0c6 {
 	background: #f7f8fa;
-	-webkit-border-radius: 6rpx;
-	        border-radius: 6rpx;
+	border-radius: 6rpx;
 	font-size: 27rpx;
 	color: #292c33;
 	text-align: center;

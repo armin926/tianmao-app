@@ -85,6 +85,10 @@ var render = function() {
     _vm.e0 = function($event) {
       _vm.skumen.ban && _vm.detErmine()
     }
+
+    _vm.e1 = function($event) {
+      _vm.skumen.ban && _vm.purChase()
+    }
   }
 }
 var recyclableRender = false
@@ -119,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 25));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 25));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -299,18 +303,78 @@ var _default2 =
       this.many++;
     },
     // 加入购物车
-    detErmine: function detErmine() {
+    detErmine: function detErmine() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this$attribute, image, price, data, atcartdata, mycart;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_this$attribute =
+
+
+
+                _this.attribute, image = _this$attribute.image, price = _this$attribute.price;
+                data = {
+                  id: _this.id,
+                  size: _this.sizevalue,
+                  color: _this.colorvalue,
+                  image: image,
+                  price: price,
+                  title: _this.title,
+                  many: _this.many };_context.prev = 2;_context.next = 5;return (
+
+
+                  new _this.Request(_this.Urls.m().atcart, data).modepost());case 5:atcartdata = _context.sent;if (!
+                atcartdata.msg.errcode) {_context.next = 10;break;}
+                // 需要登录
+                _this.$refs.show.showing('coll');_context.next = 16;break;case 10:
+
+                _this.hideCou();
+                uni.showToast({
+                  title: '加入购物车成功',
+                  icon: 'success' });
+
+                // 获取购物车的件数
+                _context.next = 14;return new _this.Request(_this.Urls.m().mycart).modeget();case 14:mycart = _context.sent;
+                _this.$store.commit('mutacart', mycart.data.length);case 16:_context.next = 20;break;case 18:_context.prev = 18;_context.t0 = _context["catch"](2);case 20:case "end":return _context.stop();}}}, _callee, null, [[2, 18]]);}))();
+
+
+
+
+    },
+    // 直接下单
+    purChase: function purChase() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this2$attribute, image, price, data, tokening;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_this2$attribute =
+
+
+
+                _this2.attribute, image = _this2$attribute.image, price = _this2$attribute.price;
+                data = [{
+                  id: _this2.id,
+                  size: _this2.sizevalue,
+                  color: _this2.colorvalue,
+                  image: image,
+                  price: price,
+                  title: _this2.title,
+                  many: _this2.many,
+                  total_price: (_this2.many * price).toFixed(2) }];
+
+                console.log(data);
+                // 校验登录状态
+                _context2.prev = 3;_context2.next = 6;return (
+                  new _this2.Request(_this2.Urls.m().tokening).modeget());case 6:tokening = _context2.sent;
+                if (user.msg.errcode) {
+                  _this2.$refs.show.showing('coll');
+                } else {
+
+                }_context2.next = 12;break;case 10:_context2.prev = 10;_context2.t0 = _context2["catch"](3);case 12:case "end":return _context2.stop();}}}, _callee2, null, [[3, 10]]);}))();
+
+
 
     },
     // 请求每个sku的数据
-    skuRequest: function skuRequest(obj) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var querysku;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.prev = 0;_context.next = 3;return (
+    skuRequest: function skuRequest(obj) {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var querysku;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.prev = 0;_context3.next = 3;return (
 
-                  new _this.Request(_this.Urls.m().querysku, obj).modepost());case 3:querysku = _context.sent;
-                _this.attribute = querysku.data[0];_context.next = 9;break;case 7:_context.prev = 7;_context.t0 = _context["catch"](0);case 9:case "end":return _context.stop();}}}, _callee, null, [[0, 7]]);}))();
+                  new _this3.Request(_this3.Urls.m().querysku, obj).modepost());case 3:querysku = _context3.sent;
+                _this3.attribute = querysku.data[0];_context3.next = 9;break;case 7:_context3.prev = 7;_context3.t0 = _context3["catch"](0);case 9:case "end":return _context3.stop();}}}, _callee3, null, [[0, 7]]);}))();
 
 
 
     } } };exports.default = _default2;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

@@ -55,7 +55,7 @@
 		<!-- 确定 -->
 		<view class="determine coup-anim" v-if="mean == '001'">确定</view>
 		<view class="determine coup-anim" v-if="mean == '002'" @click="skumen.ban && detErmine()">确定</view>
-		<view class="determine coup-anim" v-if="mean == '003'">确定</view>
+		<view class="determine coup-anim" v-if="mean == '003'" @click="skumen.ban && purChase()">确定</view>
 		<!-- 登录弹窗 -->
 		<showmodal ref="show"></showmodal>
 	</view>
@@ -171,15 +171,74 @@
 			},
 			// 减商品数量
 			reDuce() {
-				this.many <=1 ? this.many = 1 : this.many--
+				this.many <= 1 ? this.many = 1 : this.many--
 			},
 			// 加数量
 			pLus() {
 				this.many++
 			},
 			// 加入购物车
-			detErmine() {
-
+			async detErmine() {
+				let {
+					image,
+					price
+				} = this.attribute
+				let data = {
+					id: this.id,
+					size: this.sizevalue,
+					color: this.colorvalue,
+					image,
+					price,
+					title: this.title,
+					many: this.many
+				}
+				try {
+					let atcartdata = await new this.Request(this.Urls.m().atcart, data).modepost()
+					if (atcartdata.msg.errcode) {
+						// 需要登录
+						this.$refs.show.showing('coll')
+					} else {
+						this.hideCou()
+						uni.showToast({
+							title: '加入购物车成功',
+							icon: 'success'
+						})
+						// 获取购物车的件数
+						let mycart = await new this.Request(this.Urls.m().mycart).modeget()
+						this.$store.commit('mutacart', mycart.data.length)
+					}
+				} catch (e) {
+					//TODO handle the exception
+				}
+			},
+			// 直接下单
+			async purChase() {
+				let {
+					image,
+					price
+				} = this.attribute
+				let data = [{
+					id: this.id,
+					size: this.sizevalue,
+					color: this.colorvalue,
+					image,
+					price,
+					title: this.title,
+					many: this.many,
+					total_price:  (this.many * price).toFixed(2)
+				}]
+				console.log(data)
+				// 校验登录状态
+				try{
+					let tokening = await new this.Request(this.Urls.m().tokening).modeget()
+					if(user.msg.errcode){
+						this.$refs.show.showing('coll')
+					}else {
+						
+					}
+				}catch(e){
+					//TODO handle the exception
+				}
 			},
 			// 请求每个sku的数据
 			async skuRequest(obj) {
@@ -205,7 +264,6 @@
 	}
 
 	.commodity-view {
-		/* background: #4CD964; */
 		height: 200upx;
 		display: flex;
 	}

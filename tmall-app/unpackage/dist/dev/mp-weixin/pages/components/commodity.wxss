@@ -5,17 +5,14 @@
 .comm-img image.data-v-3156456d {
 	width: 100%;
 	height: 450rpx;
-	-webkit-border-top-left-radius: 10rpx;
-	        border-top-left-radius: 10rpx;
-	-webkit-border-top-right-radius: 10rpx;
-	        border-top-right-radius: 10rpx;
+	border-top-left-radius: 10rpx;
+	border-top-right-radius: 10rpx;
 }
 .comm-card.data-v-3156456d {
 	width: calc(50% - 5rpx*2);
 	margin: 5rpx;
 	background: #FFFFFF;
-	-webkit-border-radius: 10rpx;
-	        border-radius: 10rpx;
+	border-radius: 10rpx;
 }
 .comm-title.data-v-3156456d {
 	font-size: 28rpx;
@@ -43,8 +40,7 @@
 }
 .comm-left text.data-v-3156456d {
 	padding: 3rpx 4rpx;
-	-webkit-border-radius: 10rpx;
-	        border-radius: 10rpx;
+	border-radius: 10rpx;
 }
 .comm-left text.data-v-3156456d:nth-child(1) {
 	border: 2rpx solid #1183e6;

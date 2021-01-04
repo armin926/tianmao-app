@@ -21,8 +21,7 @@ page.data-v-39cbb4e8 {
 .navs-image image.data-v-39cbb4e8 {
 	width: 28px;
 	height: 28px;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 }
 .navs-image.data-v-39cbb4e8 {
 	display: -webkit-box;
@@ -57,8 +56,7 @@ swiper.data-v-39cbb4e8 {
 	height: 90rpx;
 	z-index: 999;
 	border: 2px solid #FFFFFF;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 }
 .video-img.data-v-39cbb4e8 {
 	width: 90rpx;

@@ -64,6 +64,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/payment-page/payment/payment",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "提交订单",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	// 配置底部导航栏
 	"tabBar": {

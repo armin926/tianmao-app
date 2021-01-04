@@ -53,22 +53,16 @@
 	color: #666666;
 }
 .join-right.data-v-63afedea {
-	background: -webkit-gradient(linear, left top, right top, color-stop(10%, #ffc800), color-stop(80%, #ff9602));
 	background: -webkit-linear-gradient(left, #ffc800 10%, #ff9602 80%);
 	background: linear-gradient(to right, #ffc800 10%, #ff9602 80%);
-	-webkit-border-top-left-radius: 50rpx;
-	        border-top-left-radius: 50rpx;
-	-webkit-border-bottom-left-radius: 50rpx;
-	        border-bottom-left-radius: 50rpx;
+	border-top-left-radius: 50rpx;
+	border-bottom-left-radius: 50rpx;
 }
 .join-left.data-v-63afedea {
-	background: -webkit-gradient(linear, left top, right top, color-stop(10%, #ff7500), color-stop(80%, #ff4b00));
 	background: -webkit-linear-gradient(left, #ff7500 10%, #ff4b00 80%);
 	background: linear-gradient(to right, #ff7500 10%, #ff4b00 80%);
-	-webkit-border-top-right-radius: 50rpx;
-	        border-top-right-radius: 50rpx;
-	-webkit-border-bottom-right-radius: 50rpx;
-	        border-bottom-right-radius: 50rpx;
+	border-top-right-radius: 50rpx;
+	border-bottom-right-radius: 50rpx;
 	margin-right: 10rpx;
 }
 .middle.data-v-63afedea {
@@ -80,8 +74,7 @@
 	font-size: 16rpx;
 	background: #fe0036;
 	color: #FFFFFF;
-	-webkit-border-radius: 50%;
-	        border-radius: 50%;
+	border-radius: 50%;
 	width: 30rpx;
 	height: 30rpx;
 	padding: 0 !important;

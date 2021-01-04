@@ -22,8 +22,7 @@
 	width: 100%;
 	margin: 0 90rpx;
 	height: 280rpx;
-	-webkit-border-radius: 20rpx;
-	        border-radius: 20rpx;
+	border-radius: 20rpx;
 	position: relative;
 }
 .showmodel-tips.data-v-8656cae0 {
@@ -67,8 +66,7 @@
 	padding: 0 !important;
 	margin: 0;
 	width: 100%;
-	-webkit-border-radius: inherit;
-	        border-radius: inherit;
+	border-radius: inherit;
 }
 .showmodel-button button.data-v-8656cae0:nth-child(1) {
 	border-right: 0.5rpx solid #FEECEA;

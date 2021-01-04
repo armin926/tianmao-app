@@ -30,16 +30,20 @@ __webpack_require__(/*! ./style/style.css */ 16);
 
 __webpack_require__(/*! ./pattern/animat.css */ 17);
 
-__webpack_require__(/*! ./pattern/styles.css */ 18);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}_vue.default.prototype.$bus = _bus.default; // 请求方法
-_vue.default.prototype.$Toast = _toast.default; // 引入全局组件
-var Commodity = function Commodity() {__webpack_require__.e(/*! require.ensure | pages/components/commodity */ "pages/components/commodity").then((function () {return resolve(__webpack_require__(/*! ./pages/components/commodity.vue */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadingMen = function loadingMen() {__webpack_require__.e(/*! require.ensure | pages/components/loading-men */ "pages/components/loading-men").then((function () {return resolve(__webpack_require__(/*! ./pages/components/loading-men.vue */ 80));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var showmodal = function showmodal() {Promise.all(/*! require.ensure | pages/components/showmodal */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/components/showmodal")]).then((function () {return resolve(__webpack_require__(/*! ./pages/components/showmodal.vue */ 87));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};_vue.default.prototype.Request = _api.default;
-_vue.default.prototype.Urls = _request.default;
-_vue.default.config.productionTip = false;
-_vue.default.component('Commodity', Commodity);
-_vue.default.component('loader-on', loadingMen);
-_vue.default.component('showmodal', showmodal);
+__webpack_require__(/*! ./pattern/styles.css */ 18);
 
-_App.default.mpType = 'app';
+
+
+
+
+
+
+
+
+var _store = _interopRequireDefault(__webpack_require__(/*! ./store/store.js */ 194));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}_vue.default.prototype.$bus = _bus.default; // 请求方法
+_vue.default.prototype.$Toast = _toast.default; // 引入全局组件
+var Commodity = function Commodity() {__webpack_require__.e(/*! require.ensure | pages/components/commodity */ "pages/components/commodity").then((function () {return resolve(__webpack_require__(/*! ./pages/components/commodity.vue */ 73));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadingMen = function loadingMen() {__webpack_require__.e(/*! require.ensure | pages/components/loading-men */ "pages/components/loading-men").then((function () {return resolve(__webpack_require__(/*! ./pages/components/loading-men.vue */ 80));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var showmodal = function showmodal() {Promise.all(/*! require.ensure | pages/components/showmodal */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/components/showmodal")]).then((function () {return resolve(__webpack_require__(/*! ./pages/components/showmodal.vue */ 87));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};_vue.default.prototype.Request = _api.default;_vue.default.prototype.Urls = _request.default;_vue.default.config.productionTip = false;_vue.default.component('Commodity', Commodity);_vue.default.component('loader-on', loadingMen);_vue.default.component('showmodal', showmodal); // Vuex
+_vue.default.prototype.$store = _store.default;_App.default.mpType = 'app';
 
 var app = new _vue.default(_objectSpread({},
 _App.default));

@@ -29,8 +29,7 @@
 .list-view.data-v-71f17d11 {
 	height: 400rpx;
 	background: #FFFFFF;
-	-webkit-border-radius: 9rpx;
-	        border-radius: 9rpx;
+	border-radius: 9rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -65,8 +64,7 @@
 	-webkit-align-items: center;
 	        align-items: center;
 	padding-bottom: 2rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .list-view view.data-v-71f17d11:nth-child(-n+3) {
 	border-bottom: 1rpx solid #F1F1F1;

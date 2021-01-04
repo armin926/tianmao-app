@@ -7,7 +7,6 @@
 	display: block;
 }
 .commodity-view.data-v-5ee2bebc {
-	/* background: #4CD964; */
 	height: 200rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -20,8 +19,7 @@
 .commodity-left-img image.data-v-5ee2bebc {
 	width: 200rpx;
 	height: 200rpx;
-	-webkit-border-radius: 10rpx;
-	        border-radius: 10rpx;
+	border-radius: 10rpx;
 }
 .commodity-zh.data-v-5ee2bebc {
 	font-size: 27rpx;
@@ -84,8 +82,7 @@
 	height: 65rpx;
 	background: #f5f5f5;
 	border: 1rpx solid #f5f5f5;
-	-webkit-border-radius: 20rpx;
-	        border-radius: 20rpx;
+	border-radius: 20rpx;
 	padding: 0 14rpx;
 	margin-right: 30rpx;
 	margin-bottom: 30rpx;
@@ -135,8 +132,7 @@
 	color: #051b28;
 	font-weight: bold;
 	background: #f5f5f5;
-	-webkit-border-radius: 10rpx;
-	        border-radius: 10rpx;
+	border-radius: 10rpx;
 	width: 90rpx;
 	height: 70rpx;
 	line-height: 70rpx;

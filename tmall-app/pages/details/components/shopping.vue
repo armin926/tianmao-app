@@ -72,6 +72,10 @@
 				}else if(newVal.msg === 'SUCCESS'){
 					this.cartnum = newVal.data.length
 				}
+			},
+			// 加入购物车成功后存储到vuex后，从vuex仓库中心拉取值；监听vuex数据中心的值变化
+			"$store.state.cartnum"(newVal,oldVal){
+				this.cartnum = newVal
 			}
 		},
 		methods: {

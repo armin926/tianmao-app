@@ -6,7 +6,8 @@
     "pages/index/index",
     "pages/sort/sort",
     "pages/shopping/shopping",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/payment-page/payment/payment"
   ],
   "subPackages": [],
   "window": {
@@ -51,6 +52,5 @@
     "commodity": "/pages/components/commodity",
     "loader-on": "/pages/components/loading-men",
     "showmodal": "/pages/components/showmodal"
-  },
-  "sitemapLocation": "sitemap79.json"
+  }
 }

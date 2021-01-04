@@ -2,8 +2,7 @@
 .Purchase-view.data-v-6f530274 {
 	background: #FFFFFF;
 	margin: 0 10rpx;
-	-webkit-border-radius: 10rpx;
-	        border-radius: 10rpx;
+	border-radius: 10rpx;
 }
 .pur-top.data-v-6f530274 {
 	display: -webkit-box;
@@ -98,8 +97,7 @@
 }
 .widthing.data-v-6f530274 {
 	width: 50%;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .pur-left.data-v-6f530274 {
 	border-right: 1rpx solid #F1F1F1;

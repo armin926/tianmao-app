@@ -40,6 +40,10 @@ const urls = class {
 		let wxsku = `${url}/wxsku`
 		// 获取每个sku的库存，价格
 		let querysku = `${url}/querysku`
+		// 加入购物车
+		let atcart = `${url}/atcart`
+		// 校验登录
+		let tokening = `${url}/tokening`
 
 		return {
 			getBanner,
@@ -57,7 +61,9 @@ const urls = class {
 			collection,
 			mycart,
 			wxsku,
-			querysku
+			querysku,
+			atcart,
+			tokening
 		}
 	}
 }

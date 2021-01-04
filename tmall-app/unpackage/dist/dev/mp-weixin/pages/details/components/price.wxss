@@ -1,6 +1,5 @@
 
 .price-view.data-v-a20e5b94 {
-		background: -webkit-gradient(linear, left top, right top, from(#ff0000), color-stop(#ff4000), to(#ff8000));
 		background: -webkit-linear-gradient(left, #ff0000, #ff4000, #ff8000);
 		background: linear-gradient(to right, #ff0000, #ff4000, #ff8000);
 		height: 120rpx;
@@ -72,8 +71,7 @@ padding: 9upx 23upx; */
 		line-height: 30rpx;
 		text-align: center;
 		padding: 10rpx;
-		-webkit-border-radius: 10rpx;
-		        border-radius: 10rpx;
+		border-radius: 10rpx;
 		margin-right: 10rpx;
 }
 .Discount-view text.data-v-a20e5b94:nth-child(3) {

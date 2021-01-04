@@ -18,8 +18,7 @@
 .search-ing.data-v-8b3e5b4a {
   background: #FFFFFF;
   height: 70rpx;
-  -webkit-border-radius: 50rpx;
-          border-radius: 50rpx;
+  border-radius: 50rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;

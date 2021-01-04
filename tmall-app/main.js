@@ -30,6 +30,10 @@ Vue.component('Commodity',Commodity)
 Vue.component('loader-on',loadingMen)
 Vue.component('showmodal',showmodal)
 
+// Vuex
+import store from './store/store.js'
+Vue.prototype.$store = store
+
 App.mpType = 'app'
 
 const app = new Vue({
