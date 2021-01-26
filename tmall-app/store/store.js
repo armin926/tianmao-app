@@ -5,12 +5,18 @@ Vue.use(Vuex)
 
 const state = {
 	// 购物车的件数
-	cartnum: ''
+	cartnum: '',
+	// 收货地址数据
+	addordr: {}
 }
 const mutations = {
 	// 加入购物车成功后传值的购物车条数
 	mutacart(state,nums){
 		state.cartnum = nums
+	},
+	// 收货地址携带数据返回到订单页
+	mutaadd(state,address){
+		state.addordr = address
 	}
 }
 

@@ -11,6 +11,31 @@
 		    
 		},
 		{
+		    "path" : "pages/payment-page/payment/payment",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "提交订单",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/my-address/my-address",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "我的收货地址",
+				"navigationBarTextStyle":"black"
+		    }
+		},
+		{
+		    "path" : "pages/my-address/new-address",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "新增收货地址",
+				"navigationBarTextStyle":"black"
+		    }
+		},
+		{
 		    "path" : "pages/comments/comments",
 		    "style" :                                                                                    
 		    {
@@ -64,15 +89,7 @@
             }
             
         }
-        ,{
-            "path" : "pages/payment-page/payment/payment",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "提交订单",
-                "enablePullDownRefresh": false
-            }
-            
-        }
+        
     ],
 	// 配置底部导航栏
 	"tabBar": {

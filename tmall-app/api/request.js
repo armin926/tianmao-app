@@ -44,6 +44,16 @@ const urls = class {
 		let atcart = `${url}/atcart`
 		// 校验登录
 		let tokening = `${url}/tokening`
+		// 获取收货地址
+		let gainadd = `${url}/gainadd`
+		// 新增收货地址
+		let sudeadd = `${url}/sudeadd`
+		// 修改收货地址
+		let modifyadd = `${url}/modifyadd`
+		// 删除收货地址
+		let deleadd = `${url}/deleadd`
+		// 微信支付： 统一下单
+		let wxpay = `${url}/fictpay`
 
 		return {
 			getBanner,
@@ -63,7 +73,12 @@ const urls = class {
 			wxsku,
 			querysku,
 			atcart,
-			tokening
+			tokening,
+			gainadd,
+			sudeadd,
+			modifyadd,
+			deleadd,
+			wxpay
 		}
 	}
 }

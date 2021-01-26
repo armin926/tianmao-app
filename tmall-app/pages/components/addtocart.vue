@@ -225,16 +225,19 @@
 					price,
 					title: this.title,
 					many: this.many,
-					total_price:  (this.many * price).toFixed(2)
+					total_price:  parseFloat((this.many * price).toFixed(10))
 				}]
-				console.log(data)
 				// 校验登录状态
 				try{
-					let tokening = await new this.Request(this.Urls.m().tokening).modeget()
+					let user = await new this.Request(this.Urls.m().tokening).modeget()
 					if(user.msg.errcode){
 						this.$refs.show.showing('coll')
-					}else {
-						
+					}else if(user.msg === "SUCCESS") {
+						// 数组,对象转换成字符串才能携带值
+						let cartdata = JSON.stringify(data)
+						uni.navigateTo({
+							url: '../payment-page/payment/payment?cartdata='+cartdata
+						})
 					}
 				}catch(e){
 					//TODO handle the exception
