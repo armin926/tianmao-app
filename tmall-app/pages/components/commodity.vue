@@ -1,7 +1,7 @@
 <template>
 	<view class="comm-view">
 		<block v-for="(item,index) in commodcradData" :key="index">
-			<view class="comm-card">
+			<view class="comm-card" @click="deTails(item._id)">
 				<view class="comm-img">
 					<image :src="item.image" mode="aspectFill" />
 				</view>
@@ -24,6 +24,13 @@
 			commodcradData: {
 				type: Array,
 				default: () => []
+			}
+		},
+		methods: {
+			deTails(id){
+				uni.navigateTo({
+					url: '../details/details?id='+id
+				})
 			}
 		}
 	}

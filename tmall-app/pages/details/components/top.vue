@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="navs-view">
-			<view class="navs-image" :style="'height:'+topheight.height+'px;'">
+			<view class="navs-image" :style="'height:'+topheight.height+'px;'" @click="pageRe()">
 				<image src="/static/details/fanhuihei.png" mode="widthFix"></image>
 			</view>
 			<view class="navs">
@@ -63,6 +63,12 @@
 			// 滚动时切换tab
 			changeTab(value) {
 				this.num = value
+			},
+			// 返回上一个页面
+			pageRe(){
+				uni.navigateBack({
+					delta:1
+				})
 			}
 		}
 	}

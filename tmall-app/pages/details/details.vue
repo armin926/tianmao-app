@@ -3,7 +3,7 @@
 		<!-- 返回按钮 -->
 		<view class="header-fixed backno" v-show="showAbs">
 			<view class="status_bar" :style="'height:'+ topheight.top + 'px;'"></view>
-			<view class="navs-image" :style="'height:'+topheight.height+'px;'">
+			<view class="navs-image" :style="'height:'+topheight.height+'px;'" @click="pageRe()">
 				<image src="/static/details/fanhuibai.jpg" mode="widthFix"></image>
 			</view>
 		</view>
@@ -141,8 +141,8 @@
 				this.$refs.top.changeTab(0)
 			}
 		},
-		onLoad() {
-			this.detRequest('5f8bbf2823954733542169a1')
+		onLoad(e) {
+			this.detRequest(e.id)
 		},
 		methods: {
 			// 请求数据
@@ -258,6 +258,12 @@
 			// 被子组件shopping调用
 			shoPp(mean){
 				this.$refs.addto.showCou(mean)
+			},
+			// 返回上一级页面
+			pageRe(){
+				uni.navigateBack({
+					delta:1
+				})
 			}
 		}
 	}

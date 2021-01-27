@@ -94,6 +94,9 @@
 			},
 			// 提交订单
 			async placeOrder() {
+				uni.showLoading({
+					title:'正在下单'
+				})
 				//  商品数据
 				let codata = this.comminfo.map(item => {
 					let data = {
@@ -118,7 +121,10 @@
 					let paydata = await new this.Request(this.Urls.m().wxpay, dataObj).modepost()
 					console.log(paydata)
 					if (paydata.msg === "SUCCESS") {
-
+						uni.showToast({
+							title: paydata.data,
+							icon: 'success'
+						})
 					} else {
 						// 如果出现throw关键词就会进入catch里面
 						throw paydata.msg

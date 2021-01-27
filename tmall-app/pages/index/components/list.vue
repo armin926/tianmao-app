@@ -7,7 +7,7 @@
 		</view>
 		<view class="list-view">
 			<block v-for="(item,index) in billData" :key="index">
-				<view class="menb">
+				<view class="menb" @click="deTails(item._id)">
 					<image :src="item.image" mode="aspectFill" />
 					<text>{{item.title}}</text>
 					<text>{{item.want}}人想要</text>
@@ -23,6 +23,13 @@
 			billData: {
 				type: Array,
 				default: () => []
+			}
+		},
+		methods: {
+			deTails(id){
+				uni.navigateTo({
+					url: '../details/details?id='+id
+				})
 			}
 		}
 	}

@@ -4,7 +4,7 @@
 			<swiper :autoplay="true" :circular="true" :interval="2000" :duration="1000" @change="swiperfun">
 				<block v-for="(item, index) in bannerData" :key="index">
 					<swiper-item>
-						<view class="swiper-item"><image :src="item.image" mode="aspectFill"></image></view>
+						<view class="swiper-item" @click="deTails(item._id)"><image :src="item.image" mode="aspectFill"></image></view>
 					</swiper-item>
 				</block>
 			</swiper>
@@ -33,6 +33,11 @@ export default {
 		// 滑块滑动时的触发事件
 		swiperfun(e) {
 			this.num = e.detail.current;
+		},
+		deTails(id){
+			uni.navigateTo({
+				url: '../details/details?id='+id
+			})
 		}
 	}
 };
