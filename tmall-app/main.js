@@ -25,6 +25,8 @@ import './pattern/styles.css'
 // 全屏覆盖登录弹窗
 import loginpage from './pages/components/login-page.vue'
 
+import ordering from './pages/components/ordering.vue'
+
 Vue.prototype.Request = request
 Vue.prototype.Urls = urls
 Vue.config.productionTip = false
@@ -32,6 +34,7 @@ Vue.component('Commodity',Commodity)
 Vue.component('loader-on',loadingMen)
 Vue.component('showmodal',showmodal)
 Vue.component('loginpage',loginpage)
+Vue.component('ordering',ordering)
 
 // Vuex
 import store from './store/store.js'

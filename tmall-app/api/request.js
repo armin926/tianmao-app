@@ -54,7 +54,22 @@ const urls = class {
 		let deleadd = `${url}/deleadd`
 		// 微信支付： 统一下单
 		let wxpay = `${url}/fictpay`
-
+		// 待付款
+		let tobepaid = `${url}/tobepaid`
+		// 订单详情{待付款，待发货，待收货}
+		let tobedetail = `${url}/tobedetail`
+		// 删除订单
+		let deleorder = `${url}/deleorder`
+		// 待发货
+		let tbdelivered = `${url}/tbdelivered`
+		// 待收货
+		let gtbreceived = `${url}/gtbreceived`
+		// 确认收货
+		let conreceipt = `${url}/conreceipt`
+		// 待评价
+		let tbevaluated = `${url}/tbevaluated`
+		// 待评价详情
+		let dtpepage = `${url}/dtpepage`
 		return {
 			getBanner,
 			getRecommurl,
@@ -78,7 +93,15 @@ const urls = class {
 			sudeadd,
 			modifyadd,
 			deleadd,
-			wxpay
+			wxpay,
+			tobepaid,
+			tobedetail,
+			deleorder,
+			tbdelivered,
+			gtbreceived,
+			conreceipt,
+			tbevaluated,
+			dtpepage
 		}
 	}
 }
