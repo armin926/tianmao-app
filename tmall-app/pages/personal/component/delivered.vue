@@ -63,8 +63,8 @@
 				let tip = {
 					tips: '买家已付款',
 					sum: '实付款',
-					show: true,
-					text: '确认收货',
+					show: false,
+					text: '付款',
 					id: id
 				}
 				let value = JSON.stringify(tip)

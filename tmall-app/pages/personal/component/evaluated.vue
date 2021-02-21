@@ -20,7 +20,7 @@
 				</view>
 			</view>
 			<!-- 价格 -->
-			<view class="presonal-Price">实付款￥{{paserFloat((item.price * item.many).toFixed(10))}}</view>
+			<view class="presonal-Price">实付款￥{{parseFloat((item.price * item.many).toFixed(10))}}</view>
 			<!-- 去评价 -->
 			<view class="presonal-payment">
 				<text @click="conRece(item._id,item.id,item.size,item.color)">去评价</text>
