@@ -106,6 +106,12 @@
 						})
 				}else if(text==='确认收货'){
 					this.conRece()
+				} else if(text === '去评价'){
+					let {_id,id,size,color} = this.orderdata[0].order[0]
+					let data = JSON.stringify({_id,id,size,color})
+					wx.navigateTo({
+						url:'./pu-coments?data=' + data
+					})
 				}
 			},
 			// 确认收货

@@ -32,6 +32,10 @@
 				datas: ['待付款', '待发货', '待收货', '待评价']
 			}
 		},
+		onLoad(e) {
+			console.log(e.index)
+			this.num = e.index
+		},
 		methods: {
 			menubtn(index) {
 				this.num = index

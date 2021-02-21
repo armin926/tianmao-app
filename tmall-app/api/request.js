@@ -70,6 +70,8 @@ const urls = class {
 		let tbevaluated = `${url}/tbevaluated`
 		// 待评价详情
 		let dtpepage = `${url}/dtpepage`
+		// 提交评论
+		let subcomm = `${url}/subcomm`
 		return {
 			getBanner,
 			getRecommurl,
@@ -101,7 +103,8 @@ const urls = class {
 			gtbreceived,
 			conreceipt,
 			tbevaluated,
-			dtpepage
+			dtpepage,
+			subcomm
 		}
 	}
 }

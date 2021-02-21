@@ -70,6 +70,12 @@
 				}catch(e){
 					console.log('1' + e)
 				}
+			},
+			// 详情页
+			myIng(index){
+				wx.navigateTo({
+					url: '../personal/personal?index='+index
+				})
 			}
 		}
 	}
